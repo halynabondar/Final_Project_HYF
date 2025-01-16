@@ -20,12 +20,12 @@ export default function SignUpPage() {
                     <div className="flex flex-row w-full gap-5 mt-5">
                         <div className="flex flex-col gap-1 flex-grow">
                             <label className="font-bold ml-1" htmlFor="name">Fornavn</label>
-                            <input className="p-2 border rounded-xl hover:border-blue-300 duration-300" autoComplete="name" type="text"
+                            <input className="p-2 border rounded-xl hover:border-blue-300 duration-300" autoComplete="given-name" type="text"
                                    name="name" id="name" required placeholder="Indtast fornavn"/>
                         </div>
                         <div className="flex flex-col gap-1 flex-grow">
                             <label className="font-bold ml-1" htmlFor="surname">Efternavn</label>
-                            <input className="p-2 border rounded-xl hover:border-blue-300 duration-300" autoComplete="name" type="text"
+                            <input className="p-2 border rounded-xl hover:border-blue-300 duration-300" autoComplete="family-name" type="text"
                                    name="surname" id="surname" required placeholder="Indtast efternavn"/>
                         </div>
                     </div>
@@ -33,7 +33,7 @@ export default function SignUpPage() {
                         <div className="flex flex-col gap-1 mb-5">
                             <label htmlFor="email" className="font-bold ml-1">E-mail</label>
                             <input className="p-2 border rounded-xl hover:border-blue-300 duration-300" type="email"
-                                   name="email" id="email" autoComplete="email"  required placeholder="eksempel.e-mail@gmail.com"/>
+                                   name="email" id="email" autoComplete="email"  required placeholder="Eksempel@gmail.com"/>
                         </div>
                         <div className="flex flex-col gap-1 mb-5">
                             <label htmlFor="password" className="font-bold ml-1">Adgangskode</label>
