@@ -14,8 +14,8 @@ export default function SignUpPage() {
 
     return (
         <section>
-            <div className="max-w-3xl mx-auto rounded-2xl bg-white shadow-xl p-7">
-                <h1 className={`${style.heading} text-center`}>Tilmeld dig</h1>
+            <div className="max-w-3xl mx-auto rounded-2xl bg-white shadow-xl p-5">
+                <h1 className="font-poppins font-semibold xs:text-[40px] text-[34px] xs:leading-[77px] leading-[67px] w-full text-center">Tilmeld dig</h1>
                 <form className="flex flex-col gap-5" onSubmit={handleSubmit}>
                     <div className="flex flex-row w-full gap-5 mt-5">
                         <div className="flex flex-col gap-1 flex-grow">
