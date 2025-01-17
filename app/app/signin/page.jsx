@@ -14,8 +14,9 @@ function SignInPage() {
 
     return (
         <section>
-            <div className="max-w-3xl mx-auto rounded-2xl bg-white shadow-xl p-5">
-                <h1 className="font-poppins font-semibold xs:text-[40px] text-[34px] xs:leading-[77px] leading-[67px] w-full text-center">Log ind</h1>
+            <div className="max-w-2xl mx-auto rounded-2xl bg-white shadow-xl p-5">
+                <h1 className="font-poppins font-semibold xs:text-[40px] text-[34px] xs:leading-[77px] leading-[67px] w-full text-center">Log
+                    ind</h1>
                 <form className="flex flex-col gap-5" onSubmit={handleSubmit}>
                     <div className="">
                         <div className="flex flex-col gap-1 mb-5">
@@ -25,14 +26,17 @@ function SignInPage() {
                                    placeholder="Eksempel@gmail.com"/>
                         </div>
                         <div className="flex flex-col gap-1 mb-5">
-                            <label htmlFor="password" className="font-bold ml-1">Adgangskode</label>
+                            <div className="flex justify-between">
+                                <label htmlFor="password" className="font-bold ml-1">Adgangskode</label>
+                                <Link href="/start" className="text-blue-400 text-center underline text-sm">Glemt
+                                    adgangskode?</Link>
+                            </div>
                             <input className="p-2 border rounded-xl hover:border-blue-300 duration-300" minLength="8"
                                    type="password"
                                    name="password" id="password" autoComplete="current-password" required
                                    placeholder="Indtast mindst 8+ tegn"/>
                         </div>
                     </div>
-                    <Link href="/start" className="text-blue-400 text-center underline text-sm">Glemt adgangskode?</Link>
                     <div className="flex justify-center">
                         <Button styles={`mb-3`} type="submit" value="Log ind"/>
                     </div>
