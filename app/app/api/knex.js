@@ -5,13 +5,6 @@ const connection = knex({
   connection: {
     connectionString:
       'postgres://neondb_owner:TWGZ6lqn9ruN@ep-purple-king-a216ui33-pooler.eu-central-1.aws.neon.tech/neondb?sslmode=require',
-    host: process.env.DB_HOST,
-    port: process.env.DB_PORT,
-    user: process.env.DB_USER,
-    password: process.env.DB_PASSWORD,
-    database: process.env.DB_DATABASE_NAME,
-    ssl:
-      process.env.DB_USE_SSL === 'true' ? { rejectUnauthorized: false } : false,
   },
 });
 
