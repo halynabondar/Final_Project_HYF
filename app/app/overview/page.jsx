@@ -5,7 +5,7 @@ const OverviewPage = () => {
     <div className="flex items-center justify-center min-h-screen p-10 ">
       <div className="flex w-full max-w-7xl space-x-6">
         {/* Left Section: Text */}
-        <div className="w-1/3">
+        <div className="w-1/2">
           <h1 className="text-2xl font-bold mb-4">Din spørgsmåloversigt</h1>
           <p>
             Spørgsmåloversigten giver dig et overblik over dine besvarede og
@@ -25,7 +25,7 @@ const OverviewPage = () => {
         </div>
 
         {/* Right Section: Grid */}
-        <div className="w-2/3">
+        <div className="w-1/2">
           <div
             className="grid gap-1"
             style={{
