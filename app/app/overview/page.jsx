@@ -3,7 +3,7 @@ import React from "react";
 const OverviewPage = () => {
   return (
     <div className="flex items-center justify-center min-h-screen p-10 ">
-      <div className="flex w-full max-w-7xl space-x-6">
+      <div className="flex max-w-7xl space-x-6">
         {/* Left Section: Text */}
         <div className="w-1/2">
           <h1 className="text-2xl font-bold mb-4">Din spørgsmåloversigt</h1>
