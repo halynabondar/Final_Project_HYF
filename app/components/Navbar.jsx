@@ -15,8 +15,14 @@ import MenuItem from '@mui/material/MenuItem';
 import { AccountCircle } from '@mui/icons-material';
 import Link from 'next/link';
 
-const pages = ['Start', 'Om Os', 'Test', 'Mine Resultater', 'Blog'];
-const settings = ['Profil', 'Konto', 'Dashboard', 'Log ind'];
+const pages = ['Start', 'Om Os', 'Test', 'Blog'];
+const settings = [
+  'Min Profil',
+  'Resultathistorik',
+  'Beskeder',
+  'Sikkerhed',
+  'Log ind',
+];
 
 function ResponsiveAppBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -57,7 +63,15 @@ function ResponsiveAppBar() {
               DKTestPrep
             </Typography>
           </Link>
-          <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+          <Box
+            sx={{
+              flexGrow: 1,
+              display: {
+                xs: 'flex',
+                md: 'none',
+              },
+            }}
+          >
             <IconButton
               size="large"
               aria-label="account of current user"
@@ -88,7 +102,7 @@ function ResponsiveAppBar() {
                 <MenuItem
                   key={page}
                   onClick={handleCloseNavMenu}
-                  className="pl-5 pr-10"
+                  className="pl-7 pr-12"
                 >
                   <Link
                     href={`/${page.toLowerCase().replace(/ /g, '-')}`}
