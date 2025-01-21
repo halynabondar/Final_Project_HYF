@@ -5,7 +5,7 @@ const OverviewPage = () => {
   const [questions, setQuestions] = useState(
     Array.from({ length: 40 }, (_, i) => ({
       id: i + 1,
-      answered: false,
+      answered: i ===0,//first question as answered
     }))
   );
 
@@ -49,7 +49,12 @@ const OverviewPage = () => {
               <button 
                 key={question.id}
                 onClick={() => handleQuestionClick(question.id)}
-                className="w-full h-full border border-gray-500 rounded text-center"
+                className={`w-full h-full border border-gray-500 rounded text-center
+                  ${question.answered
+                    ?'bg-gray-400 border-gray-400'//answered
+                    :' border-gray-500'//not answered
+                  }
+                  `}
               >
                 {question.id}
               </button>
