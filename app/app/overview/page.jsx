@@ -1,6 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 
 const OverviewPage = () => {
+  const [quetions, setQeustions ] = useState(
+    Array.from({length:40},(_,i)=> ({
+      id:i+1,
+      answered:false,
+    }))
+  );
+  
   return (
     <div className="flex items-center justify-center min-h-screen p-10 ">
       <div className="flex max-w-7xl space-x-6">
