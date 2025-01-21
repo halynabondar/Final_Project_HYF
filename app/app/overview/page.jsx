@@ -2,16 +2,17 @@
 import React, { useState } from "react";
 
 const OverviewPage = () => {
-  const [quetions, setQeustions ] = useState(
-    Array.from({length:40},(_,i)=> ({
-      id:i+1,
-      answered:false,
+  const [questions, setQuestions] = useState(
+    Array.from({ length: 40 }, (_, i) => ({
+      id: i + 1,
+      answered: false,
     }))
   );
-  const handleQuestionClick =(id)=>{
-    console.log(`Question ${id} cliecked.`);
-    
-  }
+
+  const handleQuestionClick = (id) => {
+    console.log(`Question ${id} clicked.`);
+  };
+
   return (
     <div className="flex items-center justify-center min-h-screen p-10 ">
       <div className="flex max-w-7xl space-x-6">
@@ -44,12 +45,13 @@ const OverviewPage = () => {
               gridTemplateRows: "repeat(4, 3rem)",  
             }}
           >
-            {Array.from({ length: 40 }, (_, i) => (
-              <button
-                key={i}
-                className="w-full h-full border border-gray-500 rounded text-center flex items-center justify-center"
+            {questions.map((question) => (
+              <button 
+                key={question.id}
+                onClick={() => handleQuestionClick(question.id)}
+                className="w-full h-full border border-gray-500 rounded text-center"
               >
-                {i + 1}
+                {question.id}
               </button>
             ))}
           </div>
