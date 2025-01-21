@@ -17,7 +17,7 @@ import Link from 'next/link';
 
 const pages = ['Start', 'Om Os', 'Test', 'Blog'];
 const settings = [
-  'Min Profil',
+  'Profil',
   'Resultathistorik',
   'Beskeder',
   'Sikkerhed',
@@ -104,10 +104,7 @@ function ResponsiveAppBar() {
                   onClick={handleCloseNavMenu}
                   className="pl-7 pr-12"
                 >
-                  <Link
-                    href={`/${page.toLowerCase().replace(/ /g, '-')}`}
-                    passHref
-                  >
+                  <Link href={`/${page.toLowerCase().replace(/ /g, '-')}`}>
                     <Typography sx={{ textAlign: 'center' }}>{page}</Typography>
                   </Link>
                 </MenuItem>
@@ -198,23 +195,20 @@ function ResponsiveAppBar() {
                   onClick={handleCloseUserMenu}
                   sx={{ pl: 3, pr: 8 }}
                 >
-                  {setting === 'Log ind' ? (
-                    <Link href="/signin" passHref>
-                      <Typography
-                        sx={{
-                          textAlign: 'center',
-                          textDecoration: 'none',
-                          color: 'inherit',
-                        }}
-                      >
-                        {setting}
-                      </Typography>
-                    </Link>
-                  ) : (
-                    <Typography sx={{ textAlign: 'center' }}>
+                  <Link
+                    href={`/${setting.toLowerCase().replace(/ /g, '-')}`}
+                    passHref
+                  >
+                    <Typography
+                      sx={{
+                        textAlign: 'center',
+                        textDecoration: 'none',
+                        color: 'inherit',
+                      }}
+                    >
                       {setting}
                     </Typography>
-                  )}
+                  </Link>
                 </MenuItem>
               ))}
             </Menu>
