@@ -7,7 +7,10 @@ const OverviewPage = () => {
       answered:false,
     }))
   );
-  
+  const handleQuestionClick =(id)=>{
+    console.log(`Question ${id} cliecked.`);
+    
+  }
   return (
     <div className="flex items-center justify-center min-h-screen p-10 ">
       <div className="flex max-w-7xl space-x-6">
