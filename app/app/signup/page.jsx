@@ -62,17 +62,17 @@ export default function SignUpPage() {
               />
             </div>
             <div className="flex grow flex-col gap-1">
-              <label className="ml-1 font-bold" htmlFor="by">
-                By
+              <label className="ml-1 font-bold" htmlFor="adresse">
+                Adresse
               </label>
               <input
                 className="rounded-xl border p-2 duration-300 hover:border-blue-300"
                 autoComplete="street-address"
                 type="text"
-                name="by"
-                id="by"
+                name="adresse"
+                id="adresse"
                 required
-                placeholder="Indtast by"
+                placeholder="Indtast adresse"
               />
             </div>
           </div>
