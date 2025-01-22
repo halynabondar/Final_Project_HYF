@@ -46,7 +46,51 @@ export default function SignUpPage() {
               />
             </div>
           </div>
-          <div className="">
+          <div className="mt-2 flex w-full flex-row gap-5">
+            <div className="flex grow flex-col gap-1">
+              <label className="ml-1 font-bold" htmlFor="land">
+                Land
+              </label>
+              <input
+                className="rounded-xl border p-2 duration-300 hover:border-blue-300"
+                autoComplete="country"
+                type="text"
+                name="land"
+                id="land"
+                required
+                placeholder="Indtast land"
+              />
+            </div>
+            <div className="flex grow flex-col gap-1">
+              <label className="ml-1 font-bold" htmlFor="by">
+                By
+              </label>
+              <input
+                className="rounded-xl border p-2 duration-300 hover:border-blue-300"
+                autoComplete="street-address"
+                type="text"
+                name="by"
+                id="by"
+                required
+                placeholder="Indtast by"
+              />
+            </div>
+          </div>
+          <div>
+            <div className="mb-5 flex flex-col gap-1">
+              <label htmlFor="tel" className="ml-1 font-bold">
+                Telefonnummer
+              </label>
+              <input
+                className="rounded-xl border p-2 duration-300 hover:border-blue-300"
+                type="tel"
+                name="tel"
+                id="tel"
+                autoComplete="tel"
+                required
+                placeholder="Indtast telefonnummer"
+              />
+            </div>
             <div className="mb-5 flex flex-col gap-1">
               <label htmlFor="email" className="ml-1 font-bold">
                 E-mail
@@ -58,7 +102,7 @@ export default function SignUpPage() {
                 id="email"
                 autoComplete="email"
                 required
-                placeholder="eksempel.e-mail@gmail.com"
+                placeholder="eksempel@gmail.com"
               />
             </div>
             <div className="mb-5 flex flex-col gap-1">
