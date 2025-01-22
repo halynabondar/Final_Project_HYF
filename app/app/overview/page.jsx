@@ -1,5 +1,6 @@
 'use client'
 import React, { useState } from "react";
+import clsx from "clsx";
 
 const OverviewPage = () => {
   const [questions, setQuestions] = useState(
@@ -49,12 +50,13 @@ const OverviewPage = () => {
               <button 
                 key={question.id}
                 onClick={() => handleQuestionClick(question.id)}
-                className={`w-full h-full border border-gray-500 rounded text-center
-                  ${question.answered
-                    ?'bg-gray-400 border-gray-400'//answered
-                    :' border-gray-500'//not answered
+                className={clsx(
+                  'w-full h-full border border-gray-500 rounded text-center', 
+                  {
+                    'bg-gray-400 border-gray-400': question.answered, // answered
+                    'border-gray-500': !question.answered //not answered
                   }
-                  `}
+                )}
               >
                 {question.id}
               </button>
