@@ -1,16 +1,20 @@
 'use client';
 
 import * as React from 'react';
-import { extendTheme, styled } from '@mui/material/styles';
+import { extendTheme } from '@mui/material/styles';
 import { AppProvider } from '@toolpad/core/AppProvider';
 import { DashboardLayout } from '@toolpad/core/DashboardLayout';
 import { PageContainer } from '@toolpad/core/PageContainer';
-import Grid from '@mui/material/Grid2';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
 import ChatIcon from '@mui/icons-material/Chat';
 import SecurityIcon from '@mui/icons-material/Security';
 import DeleteIcon from '@mui/icons-material/Delete';
+import Profile from '@/components/Profile';
+import Results from '@/components/Results';
+import Messages from '@/components/Messages';
+import Delete from '@/components/Delete';
+import Security from '@/components/Security';
 
 const NAVIGATION = [
   {
@@ -68,56 +72,30 @@ function useDemoRouter(initialPath) {
   return router;
 }
 
-const Skeleton = styled('div')(({ theme, height }) => ({
-  backgroundColor: theme.palette.action.hover,
-  borderRadius: theme.shape.borderRadius,
-  height,
-  content: '" "',
-}));
-
 export default function DashboardLayoutBasic() {
   const router = useDemoRouter('/dashboard');
+
+  const renderPageContent = () => {
+    switch (router.pathname) {
+      case '/dashboard':
+        return <Profile />;
+      case '/orders':
+        return <Results />;
+      case '/sales':
+        return <Messages />;
+      case '/traffic':
+        return <Security />;
+      case '/integrations':
+        return <Delete />;
+      default:
+        return <Profile />;
+    }
+  };
 
   return (
     <AppProvider navigation={NAVIGATION} router={router} theme={demoTheme}>
       <DashboardLayout>
-        <PageContainer>
-          <Grid container spacing={1}>
-            <Grid size={5} />
-            <Grid size={12}>
-              <Skeleton height={14} />
-            </Grid>
-            <Grid size={12}>
-              <Skeleton height={14} />
-            </Grid>
-            <Grid size={4}>
-              <Skeleton height={100} />
-            </Grid>
-            <Grid size={8}>
-              <Skeleton height={100} />
-            </Grid>
-
-            <Grid size={12}>
-              <Skeleton height={150} />
-            </Grid>
-            <Grid size={12}>
-              <Skeleton height={14} />
-            </Grid>
-
-            <Grid size={3}>
-              <Skeleton height={100} />
-            </Grid>
-            <Grid size={3}>
-              <Skeleton height={100} />
-            </Grid>
-            <Grid size={3}>
-              <Skeleton height={100} />
-            </Grid>
-            <Grid size={3}>
-              <Skeleton height={100} />
-            </Grid>
-          </Grid>
-        </PageContainer>
+        <PageContainer>{renderPageContent()}</PageContainer>
       </DashboardLayout>
     </AppProvider>
   );
