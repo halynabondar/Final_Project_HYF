@@ -1,7 +1,8 @@
+
 import './globals.css';
 import Navbar from '@/components/Navbar';
 import PropTypes from 'prop-types';
-
+import Footer from "@/components/footer";
 export const metadata = {
   title: 'HackYourFuture',
 };
@@ -12,6 +13,7 @@ export default function RootLayout({ children }) {
       <body>
         <Navbar />
         {children}
+        <Footer />
       </body>
     </html>
   );
