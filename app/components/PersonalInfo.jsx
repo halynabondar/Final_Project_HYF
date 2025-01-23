@@ -4,7 +4,11 @@ import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
 import EmailIcon from '@mui/icons-material/Email';
 import { useState } from 'react';
 
-export default function PersonalInfo() {
+export default function PersonalInfo({
+  profileData,
+  handleChange,
+  handleSubmit,
+}) {
   const [formMode, setFormMode] = useState('show');
 
   const formSubmitHandler = (e) => {
@@ -12,8 +16,8 @@ export default function PersonalInfo() {
     if (formMode === 'show') {
       setFormMode('edit');
     } else {
+      handleSubmit();
       setFormMode('show');
-      // TODO send data to backend
     }
   };
 
@@ -50,44 +54,52 @@ export default function PersonalInfo() {
         <div className="flex flex-col gap-3 text-blue-500">
           <div>
             {formMode === 'show' ? (
-              <div>Name</div>
+              <div>{profileData.first_name}</div>
             ) : (
               <input
                 className="rounded-lg border px-2"
-                value="Name"
+                name="first_name"
+                value={profileData.first_name}
+                onChange={handleChange}
                 placeholder="Dit fornavn"
               />
             )}
           </div>
           <div>
             {formMode === 'show' ? (
-              <div>Last Name</div>
+              <div>{profileData.last_name}</div>
             ) : (
               <input
                 className="rounded-lg border px-2"
-                value="Last Name"
+                name="last_name"
+                value={profileData.last_name}
+                onChange={handleChange}
                 placeholder="Dit efternavn"
               />
             )}
           </div>
           <div>
             {formMode === 'show' ? (
-              <div>(430) 065-7387</div>
+              <div>{profileData.phone_number}</div>
             ) : (
               <input
                 className="rounded-lg border px-2"
-                value="Telefonnummer"
+                name="phone_number"
+                value={profileData.phone_number}
+                onChange={handleChange}
                 placeholder="Dit telefonnummer"
               />
             )}
           </div>
           <div>
             {formMode === 'show' ? (
-              <div>main@domain.com</div>
+              <div>{profileData.email}</div>
             ) : (
               <input
                 className="rounded-lg border px-2"
-                value="Email"
+                name="email"
+                value={profileData.email}
+                onChange={handleChange}
                 placeholder="Dit email"
               />
             )}
