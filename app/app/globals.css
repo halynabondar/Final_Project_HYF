@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -18,7 +19,7 @@ body,
 
 section {
     margin: 50px 120px;
-}
+
 
 @media (max-width: 1000px) {
     section {
@@ -29,4 +30,4 @@ section {
     section {
         margin: 20px 40px;
     }
-}
+}}
