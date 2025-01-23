@@ -4,17 +4,16 @@ import * as React from 'react';
 import { extendTheme } from '@mui/material/styles';
 import { AppProvider } from '@toolpad/core/AppProvider';
 import { DashboardLayout } from '@toolpad/core/DashboardLayout';
-import { PageContainer } from '@toolpad/core/PageContainer';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
 import ChatIcon from '@mui/icons-material/Chat';
 import SecurityIcon from '@mui/icons-material/Security';
 import DeleteIcon from '@mui/icons-material/Delete';
 import Profile from '@/components/Profile';
-import Results from '@/components/Results';
 import Messages from '@/components/Messages';
 import Delete from '@/components/Delete';
 import Security from '@/components/Security';
+import StickyHeadTable from '@/components/Results';
 
 const NAVIGATION = [
   {
@@ -50,8 +49,8 @@ const demoTheme = extendTheme({
   breakpoints: {
     values: {
       xs: 0,
-      sm: 600,
-      md: 600,
+      sm: 950,
+      md: 950,
       lg: 1200,
       xl: 1536,
     },
@@ -80,7 +79,7 @@ export default function DashboardLayoutBasic() {
       case '/dashboard':
         return <Profile />;
       case '/orders':
-        return <Results />;
+        return <StickyHeadTable />;
       case '/sales':
         return <Messages />;
       case '/traffic':
@@ -94,9 +93,7 @@ export default function DashboardLayoutBasic() {
 
   return (
     <AppProvider navigation={NAVIGATION} router={router} theme={demoTheme}>
-      <DashboardLayout>
-        <PageContainer>{renderPageContent()}</PageContainer>
-      </DashboardLayout>
+      <DashboardLayout>{renderPageContent()}</DashboardLayout>
     </AppProvider>
   );
 }
