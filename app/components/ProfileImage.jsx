@@ -1,13 +1,13 @@
 import Image from 'next/image';
 import Button from '@/components/Button';
 
-export default function ProfileImage() {
+export default function ProfileImage({ handleFormStateChange }) {
   return (
     <div className="flex w-full justify-between rounded-xl bg-blue-100 p-5">
       <div className="flex gap-5">
-        <div className="rounded-3xl">
+        <div className="size-[100px] overflow-hidden rounded-3xl object-cover">
           <Image
-            className="rounded-3xl"
+            className="size-full rounded-3xl object-cover"
             src="/userImage.jpg"
             alt="profilePicture"
             width={100}
@@ -23,7 +23,7 @@ export default function ProfileImage() {
         </div>
       </div>
       <div>
-        <Button value="Redigere" onClick={() => {}} />
+        <Button value="Redigere" onClick={handleFormStateChange} />
       </div>
     </div>
   );
