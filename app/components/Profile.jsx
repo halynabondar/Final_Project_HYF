@@ -1,10 +1,22 @@
-import ProfileImage from '@/components/ProfileImage';
-import EditProfileImage from '@/components/EditProfileImage';
 import PersonalInfo from '@/components/PersonalInfo';
 import Address from '@/components/Address';
 import { useState, useEffect } from 'react';
+import ProfileImageWrapper from '@/components/ProfileImageWrapper';
 
 export default function Profile({ userID = 5 }) {
+  // const [formMode, setFormMode] = useState('show');
+
+  // const imageChangeHandler = (e) => {
+  //   e.preventDefault();
+  //   if (formMode === 'show') {
+  //     setFormMode('edit');
+  //   } else {
+  //     // handleSubmit();
+  //     //TODO upload the image
+  //     setFormMode('show');
+  //   }
+  // };
+
   const [isLoading, setIsLoading] = useState(true);
   const [profileData, setProfileData] = useState({
     first_name: '',
@@ -80,8 +92,7 @@ export default function Profile({ userID = 5 }) {
 
   return (
     <div className="flex flex-col gap-7 p-6">
-      <ProfileImage />
-      <EditProfileImage />
+      <ProfileImageWrapper user={profileData}></ProfileImageWrapper>
       <PersonalInfo
         profileData={profileData}
         handleChange={handleChange}
