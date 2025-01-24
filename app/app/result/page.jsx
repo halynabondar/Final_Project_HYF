@@ -4,6 +4,7 @@ import { style } from '@/app/style';
 import {
   TableContainer,
   Table,
+  TableBody,
   TableHead,
   TableRow,
   TableCell,
@@ -17,59 +18,56 @@ export default function ResultsPage() {
 
       {/* User Results Table */}
       <div className="bg-white shadow-md rounded-lg p-6 mb-10">
-        <TableContainer className="w-full border-collapse border border-gray-300 text-center">
+        <TableContainer>
+          <Table className="w-full border-collapse border border-gray-300 text-center ">
+            {/* Table Header */}
+            <TableHead>
+              <TableRow className="bg-gray-200">
+                <TableCell className="border border-gray-300 px-4 py-2 font-bold">
+                  Dato
+                </TableCell>
+                <TableCell className="border border-gray-300 px-4 py-2 font-bold">
+                  Bruger
+                </TableCell>
+                <TableCell className="border border-gray-300 px-4 py-2 font-bold">
+                  Korrek
+                </TableCell>
+                <TableCell className="border border-gray-300 px-4 py-2 font-bold">
+                  Ukorrekt
+                </TableCell>
+                <TableCell className="border border-gray-300 px-4 py-2 font-bold">
+                  Resultater
+                </TableCell>
+              </TableRow>
+            </TableHead>
 
-          <TableHead>
-            <TableRow className="bg-gray-200">
-              <TableCell className="border border-gray-300 px-4 py-2 font-bold">
-                Dato
-              </TableCell>
-              <TableCell className="border border-gray-300 px-4 py-2 font-bold">
-                Bruger
-              </TableCell>
-              <TableCell className="border border-gray-300 px-4 py-2 font-bold">
-                Korrek
-              </TableCell>
-              <TableCell className="border border-gray-300 px-4 py-2 font-bold">
-                Ukorrekt
-              </TableCell>
-              <TableCell className="border border-gray-300 px-4 py-2 font-bold">
-                Resultater
-              </TableCell>
-            </TableRow>
-          </TableHead>
+            {/*Table Body */}
 
-          {/*Table Body */}
-
-          <tbody>
-            <tr>
-              <td className="border border-gray-300 px-4 py-2">12.3.2024</td>
-              <td className="border border-gray-300 px-4 py-2 flex items-center justify-center gap-2">
-                <img
-                  src=""
-                  alt="User"
-                  className="w-10 h-10 rounded-full"
-                />
-                <span>Full Name</span>
-              </td>
-              <td className="border border-gray-300 px-4 py-2">36</td>
-              <td className="border border-gray-300 px-4 py-2">4</td>
-              <td
-                className={clsx(
-                  'border border-gray-300 px-4 py-2 font-semibold',
-                  'text-blue-500'
-                )}
-              >
-                ✔ Done
-              </td>
-            </tr>
-          </tbody>
+            <TableBody>
+              <TableRow>
+                <TableCell className="border border-gray-300 px-4 py-2">12.3.2024</TableCell>
+                <TableCell className="border border-gray-300 px-4 py-2 flex items-center justify-center gap-2">
+                  <span>Full Name</span>
+                </TableCell>
+                <TableCell className="border border-gray-300 px-4 py-2">36</TableCell>
+                <TableCell className="border border-gray-300 px-4 py-2">4</TableCell>
+                <TableCell
+                  className={clsx(
+                    'border border-gray-300 px-4 py-2 font-semibold',
+                    'text-blue-500'
+                  )}
+                >
+                  ✔ Done
+                </TableCell>
+              </TableRow>
+            </TableBody>
+          </ Table>
         </TableContainer>
       </div>
 
       {/* Incorrect Answers Section */}
       <div className="bg-white shadow-md rounded-lg p-6">
-        <h2 className="text-xl font-semibold text-blue-600 mb-6">Forkerte svar</h2>
+        <h2 className={`${style.heading} text-center`}>Forkerte svar</h2>
         <div className="grid grid-cols-2 gap-6">
           {/* Example of One Answer Block */}
           {Array.from({ length: 6 }).map((_, index) => (
