@@ -3,7 +3,7 @@ import knex from '@/app/api/knex';
 
 // GET endpoint: Fetch user by ID
 export async function GET(req, { params }) {
-  const { id } = params; // Extract `id` from the URL
+  const { id } = await params;
 
   try {
     // Fetch the user with the given id
@@ -25,9 +25,8 @@ export async function GET(req, { params }) {
 
 // PUT endpoint: Update user data
 export async function PUT(req, { params }) {
-  const { id } = params;
-  const body = await req.body;
-
+  const { id } = await params;
+  const body = await req.json();
   try {
     const updatesRows = await knex('users').where({ id }).update(body);
 
@@ -47,7 +46,7 @@ export async function PUT(req, { params }) {
 
 // POST endpoint: Update image
 export async function POST(req, { params }) {
-  const { id } = params;
+  const { id } = await params;
 
   try {
     const formData = await req.formData();
