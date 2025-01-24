@@ -70,7 +70,7 @@ export default function SignUpPage() {
                 type="town"
                 name="town"
                 id="town"
-                autoComplete="city"
+                autoComplete="address-level-12"
                 required
                 placeholder="Indtast by"
               />
