@@ -4,9 +4,9 @@ import Button from '@/components/Button';
 import Alert from '@mui/material/Alert';
 import AlertTitle from '@mui/material/AlertTitle';
 
-export default function EditProfileImage({ handleFormStateChange }) {
+export default function EditProfileImage({ handleFormStateChange, user }) {
   const [selectedFile, setSelectedFile] = useState(null);
-  const [preview, setPreview] = useState('/userImage.jpg');
+  const [preview, setPreview] = useState(user?.image || '/userImage.jpg');
   const [alert, setAlert] = useState({
     message: '',
     severity: '',
@@ -17,7 +17,14 @@ export default function EditProfileImage({ handleFormStateChange }) {
   const handleImageChange = (e) => {
     const image = e.target.files[0];
     if (image) {
-      setSelectedFile(image);
+      const reader = new FileReader();
+
+      // Event listener for when the file is fully read
+      reader.onload = (event) => {
+        const base64String = event.target.result; // This is the Base64 string
+        setSelectedFile(base64String);
+      };
+      reader.readAsDataURL(image);
       setPreview(URL.createObjectURL(image)); // Create a preview URL for the selected file
     }
   };
@@ -29,19 +36,20 @@ export default function EditProfileImage({ handleFormStateChange }) {
   };
 
   // Handle form submission
-  const handleSubmit = async (userId) => {
+  const handleSubmit = async () => {
     if (!selectedFile) {
       showAlert('Please select an image to upload', 'warning');
       return;
     }
 
-    const formData = new FormData();
-    formData.append('image', selectedFile);
-
+    const formData = { image: selectedFile };
     try {
-      const response = await fetch(`/api/user/${userId}`, {
-        method: 'POST',
-        body: formData,
+      const response = await fetch(`/api/user/${user.id}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
       });
 
       if (response.ok) {
@@ -69,9 +77,9 @@ export default function EditProfileImage({ handleFormStateChange }) {
       )}
       <div className="flex w-full justify-between rounded-xl bg-blue-100 p-5">
         <div className="flex gap-5">
-          <div className="rounded-3xl">
+          <div className="size-[100px] overflow-hidden rounded-3xl object-cover">
             <Image
-              className="rounded-3xl"
+              className="size-full rounded-3xl object-cover"
               src={preview}
               alt="profilePicture"
               width={100}

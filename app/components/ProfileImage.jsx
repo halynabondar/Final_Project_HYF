@@ -1,14 +1,16 @@
 import Image from 'next/image';
 import Button from '@/components/Button';
 
-export default function ProfileImage({ handleFormStateChange }) {
+export default function ProfileImage({ handleFormStateChange, user }) {
+  const imagePreview = user?.image || '/userImage.jpg';
+
   return (
     <div className="flex w-full justify-between rounded-xl bg-blue-100 p-5">
       <div className="flex gap-5">
         <div className="size-[100px] overflow-hidden rounded-3xl object-cover">
           <Image
             className="size-full rounded-3xl object-cover"
-            src="/userImage.jpg"
+            src={imagePreview}
             alt="profilePicture"
             width={100}
             height={100}

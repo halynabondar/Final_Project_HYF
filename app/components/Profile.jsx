@@ -4,19 +4,6 @@ import { useState, useEffect } from 'react';
 import ProfileImageWrapper from '@/components/ProfileImageWrapper';
 
 export default function Profile({ userID = 5 }) {
-  // const [formMode, setFormMode] = useState('show');
-
-  // const imageChangeHandler = (e) => {
-  //   e.preventDefault();
-  //   if (formMode === 'show') {
-  //     setFormMode('edit');
-  //   } else {
-  //     // handleSubmit();
-  //     //TODO upload the image
-  //     setFormMode('show');
-  //   }
-  // };
-
   const [isLoading, setIsLoading] = useState(true);
   const [profileData, setProfileData] = useState({
     first_name: '',
@@ -24,7 +11,9 @@ export default function Profile({ userID = 5 }) {
     phone_number: '',
     email: '',
     country: '',
+    town: '',
     address: '',
+    image: '',
   });
 
   // Handle input changes
@@ -51,7 +40,10 @@ export default function Profile({ userID = 5 }) {
           phone_number: data.phone_number || '',
           email: data.email || '',
           country: data.country || '',
+          town: data.town || '',
           address: data.address || '',
+          image: data.image || '',
+          id: data.id,
         });
       } catch (error) {
         console.error('Failed to fetch data:', error);
@@ -68,9 +60,9 @@ export default function Profile({ userID = 5 }) {
   const handleSubmit = async () => {
     try {
       const response = await fetch(
-        `http://localhost:3000/api/users/${profileData.id}`,
+        `http://localhost:3000/api/user/${profileData.id}`,
         {
-          method: 'POST',
+          method: 'PUT',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(profileData),
         },
@@ -98,7 +90,11 @@ export default function Profile({ userID = 5 }) {
         handleChange={handleChange}
         handleSubmit={handleSubmit}
       />
-      <Address profileData={profileData} handleChange={handleChange} />
+      <Address
+        profileData={profileData}
+        handleChange={handleChange}
+        handleSubmit={handleSubmit}
+      />
     </div>
   );
 }

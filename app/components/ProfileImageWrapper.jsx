@@ -15,9 +15,15 @@ export default function ProfileImageWrapper({ user }) {
   return (
     <>
       {formMode === 'show' ? (
-        <ProfileImage handleFormStateChange={handleFormStateChange} />
+        <ProfileImage
+          handleFormStateChange={handleFormStateChange}
+          user={user}
+        />
       ) : (
-        <EditProfileImage handleFormStateChange={handleFormStateChange} />
+        <EditProfileImage
+          handleFormStateChange={handleFormStateChange}
+          user={user}
+        />
       )}
     </>
   );
