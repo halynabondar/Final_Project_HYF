@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import ProfileImage from '@/components/ProfileImage';
 import EditProfileImage from '@/components/EditProfileImage';
+import PropTypes from 'prop-types';
 
 export default function ProfileImageWrapper({ user }) {
   const [formMode, setFormMode] = useState('show');
@@ -28,3 +29,10 @@ export default function ProfileImageWrapper({ user }) {
     </>
   );
 }
+
+ProfileImageWrapper.propTypes = {
+  user: PropTypes.shape({
+    image: PropTypes.string.isRequired, // Validate that `image` is a required string
+    name: PropTypes.string.isRequired, // Validate that `name` is a required string
+  }).isRequired, // Ensure `user` is a required object
+};
