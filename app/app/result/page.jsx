@@ -1,6 +1,7 @@
 import React from 'react'
 import clsx from 'clsx'
 import { style } from '@/app/style';
+import { TableContainer } from '@mui/material';
 
 
 export default function ResultsPage() {
@@ -10,16 +11,30 @@ export default function ResultsPage() {
 
       {/* User Results Table */}
       <div className="bg-white shadow-md rounded-lg p-6 mb-10">
-        <table className="w-full border-collapse border border-gray-300 text-center">
-          <thead>
-            <tr className="bg-gray-200">
-              <th className="border border-gray-300 px-4 py-2">Dato</th>
-              <th className="border border-gray-300 px-4 py-2">Bruger</th>
-              <th className="border border-gray-300 px-4 py-2">Korrekt</th>
-              <th className="border border-gray-300 px-4 py-2">Ukorrekt</th>
-              <th className="border border-gray-300 px-4 py-2">Resultater</th>
-            </tr>
-          </thead>
+        <TableContainer className="w-full border-collapse border border-gray-300 text-center">
+          {/* Table Header */}
+          <TableHead>
+            <TableRow className="bg-gray-200">
+              <TableCell className="border border-gray-300 px-4 py-2 font-bold">
+                Dato
+              </TableCell>
+              <TableCell className="border border-gray-300 px-4 py-2 font-bold">
+               Bruger
+              </TableCell>
+              <TableCell className="border border-gray-300 px-4 py-2 font-bold">
+                Korrek
+              </TableCell>
+              <TableCell className="border border-gray-300 px-4 py-2 font-bold">
+               Ukorrekt
+              </TableCell>
+              <TableCell className="border border-gray-300 px-4 py-2 font-bold">
+                Resultater
+              </TableCell>
+            </TableRow>
+          </TableHead>
+         
+          {/*Table Body */}
+          
           <tbody>
             <tr>
               <td className="border border-gray-300 px-4 py-2">12.3.2024</td>
@@ -36,14 +51,14 @@ export default function ResultsPage() {
               <td
                 className={clsx(
                   'border border-gray-300 px-4 py-2 font-semibold',
-                  'text-blue-500' 
+                  'text-blue-500'
                 )}
               >
                 ✔ Done
               </td>
             </tr>
           </tbody>
-        </table>
+        </TableContainer>
       </div>
 
       {/* Incorrect Answers Section */}
@@ -62,7 +77,7 @@ export default function ResultsPage() {
               <h3
                 className={clsx(
                   'text-lg font-semibold mb-2',
-                  'text-blue-800' 
+                  'text-blue-800'
                 )}
               >
                 {8 + index * 4}. Question
@@ -74,7 +89,7 @@ export default function ResultsPage() {
               <p
                 className={clsx(
                   'text-green-500',
-                  'font-semibold' 
+                  'font-semibold'
                 )}
               >
                 <span>Korrekt svar: </span>
