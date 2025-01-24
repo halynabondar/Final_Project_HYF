@@ -1,7 +1,13 @@
 import React from 'react'
 import clsx from 'clsx'
 import { style } from '@/app/style';
-import { TableContainer } from '@mui/material';
+import {
+  TableContainer,
+  Table,
+  TableHead,
+  TableRow,
+  TableCell,
+} from '@mui/material';
 
 
 export default function ResultsPage() {
@@ -12,29 +18,29 @@ export default function ResultsPage() {
       {/* User Results Table */}
       <div className="bg-white shadow-md rounded-lg p-6 mb-10">
         <TableContainer className="w-full border-collapse border border-gray-300 text-center">
-          {/* Table Header */}
+
           <TableHead>
             <TableRow className="bg-gray-200">
               <TableCell className="border border-gray-300 px-4 py-2 font-bold">
                 Dato
               </TableCell>
               <TableCell className="border border-gray-300 px-4 py-2 font-bold">
-               Bruger
+                Bruger
               </TableCell>
               <TableCell className="border border-gray-300 px-4 py-2 font-bold">
                 Korrek
               </TableCell>
               <TableCell className="border border-gray-300 px-4 py-2 font-bold">
-               Ukorrekt
+                Ukorrekt
               </TableCell>
               <TableCell className="border border-gray-300 px-4 py-2 font-bold">
                 Resultater
               </TableCell>
             </TableRow>
           </TableHead>
-         
+
           {/*Table Body */}
-          
+
           <tbody>
             <tr>
               <td className="border border-gray-300 px-4 py-2">12.3.2024</td>
