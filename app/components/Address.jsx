@@ -2,6 +2,7 @@ import Button from '@/components/Button';
 import PublicIcon from '@mui/icons-material/Public';
 import HomeIcon from '@mui/icons-material/Home';
 import { useState } from 'react';
+import PropTypes from 'prop-types';
 
 export default function Address({ profileData, handleChange, handleSubmit }) {
   const [formMode, setFormMode] = useState('show');
@@ -87,3 +88,13 @@ export default function Address({ profileData, handleChange, handleSubmit }) {
     </div>
   );
 }
+
+Address.propTypes = {
+  profileData: PropTypes.shape({
+    country: PropTypes.string.isRequired,
+    town: PropTypes.string.isRequired,
+    address: PropTypes.string.isRequired,
+  }).isRequired,
+  handleChange: PropTypes.func.isRequired,
+  handleSubmit: PropTypes.func.isRequired,
+};

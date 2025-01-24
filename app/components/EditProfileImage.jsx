@@ -3,6 +3,7 @@ import Image from 'next/image';
 import Button from '@/components/Button';
 import Alert from '@mui/material/Alert';
 import AlertTitle from '@mui/material/AlertTitle';
+import PropTypes from 'prop-types';
 
 export default function EditProfileImage({ handleFormStateChange, user }) {
   const [selectedFile, setSelectedFile] = useState(null);
@@ -128,3 +129,11 @@ export default function EditProfileImage({ handleFormStateChange, user }) {
     </div>
   );
 }
+
+EditProfileImage.propTypes = {
+  handleFormStateChange: PropTypes.func.isRequired, // Ensure it's a function
+  user: PropTypes.shape({
+    image: PropTypes.string, // `image` can be null or undefined
+    id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired, // `id` must be string or number
+  }).isRequired, // Entire `user` object is required
+};

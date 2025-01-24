@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import Button from '@/components/Button';
+import PropTypes from 'prop-types';
 
 export default function ProfileImage({ handleFormStateChange, user }) {
   const imagePreview = user?.image || '/userImage.jpg';
@@ -30,3 +31,10 @@ export default function ProfileImage({ handleFormStateChange, user }) {
     </div>
   );
 }
+
+ProfileImage.propTypes = {
+  handleFormStateChange: PropTypes.func.isRequired, // Validate as a required function
+  user: PropTypes.shape({
+    image: PropTypes.string, // Validate `image` as a string
+  }).isRequired, // Ensure `user` is a required object
+};

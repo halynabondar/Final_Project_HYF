@@ -2,6 +2,7 @@ import PersonalInfo from '@/components/PersonalInfo';
 import Address from '@/components/Address';
 import { useState, useEffect } from 'react';
 import ProfileImageWrapper from '@/components/ProfileImageWrapper';
+import PropTypes from 'prop-types';
 
 export default function Profile({ userID = 5 }) {
   const [isLoading, setIsLoading] = useState(true);
@@ -55,7 +56,7 @@ export default function Profile({ userID = 5 }) {
     if (!profileData.id) {
       fetchUserData(userID);
     }
-  }, []);
+  });
 
   const handleSubmit = async () => {
     try {
@@ -98,3 +99,7 @@ export default function Profile({ userID = 5 }) {
     </div>
   );
 }
+
+Profile.propTypes = {
+  userID: PropTypes.string.isRequired, // Assuming userID is a required string
+};

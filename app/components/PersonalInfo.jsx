@@ -3,6 +3,7 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
 import EmailIcon from '@mui/icons-material/Email';
 import { useState } from 'react';
+import PropTypes from 'prop-types';
 
 export default function PersonalInfo({
   profileData,
@@ -111,3 +112,14 @@ export default function PersonalInfo({
     </div>
   );
 }
+
+PersonalInfo.propTypes = {
+  profileData: PropTypes.shape({
+    first_name: PropTypes.string.isRequired, // Required string
+    last_name: PropTypes.string.isRequired, // Required string
+    phone_number: PropTypes.string.isRequired, // Required string
+    email: PropTypes.string.isRequired, // Required string
+  }).isRequired, // `profileData` object is required
+  handleChange: PropTypes.func.isRequired, // Function type
+  handleSubmit: PropTypes.func.isRequired, // Function type
+};
