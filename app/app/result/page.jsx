@@ -14,7 +14,7 @@ import {
 export default function ResultsPage() {
   return (
     <div className="mx-auto max-w-4xl rounded-2xl bg-white p-10 shadow-xl">
-      <h1 className={`${style.heading} text-center`}>Dine Resultater</h1>
+      <h1 className='text-center'>Dine Resultater</h1>
 
       {/* User Results Table */}
       <div className="bg-white shadow-md rounded-lg p-6 mb-10">
@@ -35,9 +35,6 @@ export default function ResultsPage() {
                 <TableCell className="border border-gray-300 px-4 py-2 font-bold">
                   Ukorrekt
                 </TableCell>
-                <TableCell className="border border-gray-300 px-4 py-2 font-bold">
-                  Resultater
-                </TableCell>
               </TableRow>
             </TableHead>
 
@@ -51,14 +48,6 @@ export default function ResultsPage() {
                 </TableCell>
                 <TableCell className="border border-gray-300 px-4 py-2">36</TableCell>
                 <TableCell className="border border-gray-300 px-4 py-2">4</TableCell>
-                <TableCell
-                  className={clsx(
-                    'border border-gray-300 px-4 py-2 font-semibold',
-                    'text-blue-500'
-                  )}
-                >
-                  ✔ Done
-                </TableCell>
               </TableRow>
             </TableBody>
           </ Table>
@@ -67,28 +56,28 @@ export default function ResultsPage() {
 
       {/* Incorrect Answers Section */}
       <div className="bg-white shadow-md rounded-lg p-6">
-        <h2 className={`${style.heading} text-center`}>Forkerte svar</h2>
-        <div className="grid grid-cols-2 gap-6">
+        <h2 className='text-center text-black text-bold'>Forkerte svar</h2>
+        <div className="grid grid-cols-2 gap-3">
           {/* Example of One Answer Block */}
           {Array.from({ length: 6 }).map((_, index) => (
             <div
               key={index}
               className={clsx(
-                'p-4 rounded-lg',
-                index % 2 === 0 ? 'bg-blue-100' : 'bg-gray-100'
+                'p-4 rounded-lg bg-gray-100'
               )}
             >
+              {/* question  */}
               <h3
                 className={clsx(
                   'text-lg font-semibold mb-2',
-                  'text-blue-800'
+                  'text-black'
                 )}
               >
-                {8 + index * 4}. Question
+                {index + 1}. Question
               </h3>
               <p className="text-red-500">
                 <span className="font-semibold">Dit svar: </span>
-                lalalalalalalala
+                A : Spain
               </p>
               <p
                 className={clsx(
@@ -97,7 +86,7 @@ export default function ResultsPage() {
                 )}
               >
                 <span>Korrekt svar: </span>
-                dududududududududdu
+                C : Germany
               </p>
             </div>
           ))}
