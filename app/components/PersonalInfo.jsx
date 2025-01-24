@@ -19,6 +19,7 @@ export default function PersonalInfo({
       handleSubmit();
       setFormMode('show');
     }
+    handleSubmit();
   };
 
   return (
@@ -57,7 +58,7 @@ export default function PersonalInfo({
               <div>{profileData.first_name}</div>
             ) : (
               <input
-                className="rounded-lg border px-2"
+                className="rounded-lg border bg-white px-2"
                 name="first_name"
                 value={profileData.first_name}
                 onChange={handleChange}
@@ -70,7 +71,7 @@ export default function PersonalInfo({
               <div>{profileData.last_name}</div>
             ) : (
               <input
-                className="rounded-lg border px-2"
+                className="rounded-lg border bg-white px-2"
                 name="last_name"
                 value={profileData.last_name}
                 onChange={handleChange}
@@ -83,7 +84,7 @@ export default function PersonalInfo({
               <div>{profileData.phone_number}</div>
             ) : (
               <input
-                className="rounded-lg border px-2"
+                className="rounded-lg border bg-white px-2"
                 name="phone_number"
                 value={profileData.phone_number}
                 onChange={handleChange}
@@ -96,7 +97,7 @@ export default function PersonalInfo({
               <div>{profileData.email}</div>
             ) : (
               <input
-                className="rounded-lg border px-2"
+                className="rounded-lg border bg-white px-2"
                 name="email"
                 value={profileData.email}
                 onChange={handleChange}

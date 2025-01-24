@@ -3,7 +3,7 @@ import PublicIcon from '@mui/icons-material/Public';
 import HomeIcon from '@mui/icons-material/Home';
 import { useState } from 'react';
 
-export default function Address() {
+export default function Address({ profileData, handleChange, handleSubmit }) {
   const [formMode, setFormMode] = useState('show');
 
   const formSubmitHandler = (e) => {
@@ -12,8 +12,8 @@ export default function Address() {
       setFormMode('edit');
     } else {
       setFormMode('show');
-      // TODO send data to backend
     }
+    handleSubmit(profileData);
   };
 
   return (
@@ -32,6 +32,10 @@ export default function Address() {
             Land
           </div>
           <div>
+            <PublicIcon className="mr-2 text-blue-500" />
+            By
+          </div>
+          <div>
             <HomeIcon className="mr-2 text-blue-500" />
             Adresse
           </div>
@@ -39,24 +43,41 @@ export default function Address() {
         <div className="flex flex-col gap-2 text-blue-500">
           <div>
             {formMode === 'show' ? (
-              <div>Denmark</div>
+              <div>{profileData.country}</div>
             ) : (
               <input
-                className="rounded-lg border px-2"
-                value="Country"
+                className="rounded-lg border bg-white px-2"
+                value={profileData.country}
                 placeholder="Dit land"
+                name="country"
+                onChange={handleChange}
+              />
+            )}
+          </div>
+          <div>
+            {formMode === 'show' ? (
+              <div>{profileData.town}</div>
+            ) : (
+              <input
+                className="rounded-lg border bg-white px-2"
+                value={profileData.town}
+                placeholder="Dit land"
+                name="town"
+                onChange={handleChange}
               />
             )}
           </div>
           <div>
             {' '}
             {formMode === 'show' ? (
-              <div>North Las Vegas, NV</div>
+              <div>{profileData.address}</div>
             ) : (
               <input
-                className="rounded-lg border px-2"
-                value="address"
+                className="rounded-lg border bg-white px-2"
+                value={profileData.address}
                 placeholder="Din adresse"
+                name="address"
+                onChange={handleChange}
               />
             )}
           </div>
