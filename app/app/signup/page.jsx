@@ -53,7 +53,7 @@ export default function SignUpPage() {
               </label>
               <input
                 className="rounded-xl border p-2 duration-300 hover:border-blue-300"
-                autoComplete="country"
+                autoComplete="country-name"
                 type="text"
                 name="land"
                 id="land"
@@ -61,6 +61,22 @@ export default function SignUpPage() {
                 placeholder="Indtast land"
               />
             </div>
+            <div className="mb-3 flex grow flex-col gap-1">
+              <label htmlFor="town" className="ml-1 font-bold">
+                By
+              </label>
+              <input
+                className="rounded-xl border p-2 duration-300 hover:border-blue-300"
+                type="town"
+                name="town"
+                id="town"
+                autoComplete="city"
+                required
+                placeholder="Indtast by"
+              />
+            </div>
+          </div>
+          <div className="mt-2 flex w-full flex-row gap-5">
             <div className="flex grow flex-col gap-1">
               <label className="ml-1 font-bold" htmlFor="adresse">
                 Adresse
@@ -75,9 +91,7 @@ export default function SignUpPage() {
                 placeholder="Indtast adresse"
               />
             </div>
-          </div>
-          <div>
-            <div className="mb-5 flex flex-col gap-1">
+            <div className="mb-3 flex grow flex-col gap-1">
               <label htmlFor="tel" className="ml-1 font-bold">
                 Telefonnummer
               </label>
@@ -91,7 +105,9 @@ export default function SignUpPage() {
                 placeholder="Indtast telefonnummer"
               />
             </div>
-            <div className="mb-5 flex flex-col gap-1">
+          </div>
+          <div className="flex w-full flex-col gap-5">
+            <div className="mb-3 flex flex-col gap-1">
               <label htmlFor="email" className="ml-1 font-bold">
                 E-mail
               </label>
@@ -105,7 +121,7 @@ export default function SignUpPage() {
                 placeholder="eksempel@gmail.com"
               />
             </div>
-            <div className="mb-5 flex flex-col gap-1">
+            <div className="mb-3 flex flex-col gap-1">
               <label htmlFor="password" className="ml-1 font-bold">
                 Adgangskode
               </label>
@@ -120,7 +136,7 @@ export default function SignUpPage() {
                 placeholder="Indtast mindst 8+ tegn"
               />
             </div>
-            <div className="mb-5 flex flex-col gap-1">
+            <div className="mb-3 flex flex-col gap-1">
               <label htmlFor="repeatPassword" className="ml-1 font-bold">
                 Bekræft adgangskode
               </label>
