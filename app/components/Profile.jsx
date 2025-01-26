@@ -31,9 +31,7 @@ export default function Profile({ userID = 5 }) {
     const fetchUserData = async (userID) => {
       setIsLoading(true);
       try {
-        const response = await fetch(
-          `http://localhost:3000/api/user/${userID}`,
-        );
+        const response = await fetch(`/api/user/${userID}`);
         const data = await response.json();
         setProfileData({
           first_name: data.first_name || '',
@@ -60,14 +58,11 @@ export default function Profile({ userID = 5 }) {
 
   const handleSubmit = async () => {
     try {
-      const response = await fetch(
-        `http://localhost:3000/api/user/${profileData.id}`,
-        {
-          method: 'PUT',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(profileData),
-        },
-      );
+      const response = await fetch(`/api/user/${profileData.id}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(profileData),
+      });
       if (response.ok) {
         console.log('Profile updated successfully');
       } else {
