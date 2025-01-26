@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import Image from 'next/image';
 import Button from '@/components/Button';
 import Alert from '@mui/material/Alert';
@@ -13,6 +13,8 @@ export default function EditProfileImage({ handleFormStateChange, user }) {
     severity: '',
     visible: false,
   });
+
+  const fileInputRef = useRef(null);
 
   // Handle file selection
   const handleImageChange = (e) => {
@@ -97,6 +99,7 @@ export default function EditProfileImage({ handleFormStateChange, user }) {
             <div className="mt-4 flex gap-5">
               <label className="cursor-pointer">
                 <input
+                  ref={fileInputRef}
                   type="file"
                   accept="image/png, image/jpeg"
                   className="hidden"
@@ -105,9 +108,7 @@ export default function EditProfileImage({ handleFormStateChange, user }) {
                 <Button
                   value="Vælg billede"
                   styles={`border border-blue-500 bg-white text-blue-500 hover:text-white`}
-                  onClick={() => {
-                    document.querySelector('input[type=file]').click();
-                  }}
+                  onClick={() => fileInputRef.current.click()}
                 />
               </label>
               <Button
