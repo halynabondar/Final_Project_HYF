@@ -24,7 +24,7 @@ export default function PersonalInfo({
   };
 
   return (
-    <div className="flex w-full flex-col justify-between rounded-xl border p-5">
+    <div className="flex w-full flex-col justify-between rounded-xl border bg-white p-5">
       <div className="flex justify-between">
         <h3 className="text-lg font-bold text-gray-700">
           Personlige oplysninger
