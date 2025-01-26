@@ -3,7 +3,7 @@ import knex from '@/app/api/knex';
 
 export async function GET() {
   try {
-    const result = await knex('results_history').select('*');
+    const result = await knex('result_history').select('*');
 
     return NextResponse.json(result);
   } catch (error) {
