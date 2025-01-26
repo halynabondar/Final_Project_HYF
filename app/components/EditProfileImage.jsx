@@ -78,7 +78,7 @@ export default function EditProfileImage({ handleFormStateChange, user }) {
           {alert.message}
         </Alert>
       )}
-      <div className="flex w-full justify-between rounded-xl bg-blue-100 p-5">
+      <div className="flex w-full justify-between rounded-xl bg-blue-50 p-5">
         <div className="flex gap-5">
           <div className="size-[100px] overflow-hidden rounded-3xl object-cover">
             <Image
