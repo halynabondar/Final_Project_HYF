@@ -47,7 +47,7 @@ export default function Address({ profileData, handleChange, handleSubmit }) {
               <div>{profileData.country}</div>
             ) : (
               <input
-                className="rounded-lg border bg-white px-2"
+                className="ml-5 rounded-lg border bg-white px-2"
                 value={profileData.country}
                 placeholder="Dit land"
                 name="country"
@@ -60,7 +60,7 @@ export default function Address({ profileData, handleChange, handleSubmit }) {
               <div>{profileData.town}</div>
             ) : (
               <input
-                className="rounded-lg border bg-white px-2"
+                className="ml-5 rounded-lg border bg-white px-2"
                 value={profileData.town}
                 placeholder="Dit land"
                 name="town"
@@ -73,7 +73,7 @@ export default function Address({ profileData, handleChange, handleSubmit }) {
               <div>{profileData.address}</div>
             ) : (
               <input
-                className="rounded-lg border bg-white px-2"
+                className="ml-5 rounded-lg border bg-white px-2"
                 value={profileData.address}
                 placeholder="Din adresse"
                 name="address"
