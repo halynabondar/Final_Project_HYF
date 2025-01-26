@@ -107,13 +107,12 @@ export default function EditProfileImage({ handleFormStateChange, user }) {
                 />
                 <Button
                   value="Vælg billede"
-                  styles={`border border-blue-500 bg-white text-blue-500 hover:text-white`}
                   onClick={() => fileInputRef.current.click()}
                 />
               </label>
               <Button
                 value="Fjerne"
-                styles={`border border-red-500 bg-white text-red-500 hover:text-white hover:bg-red-500`}
+                styles={`bg-red-500 hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-400`}
                 onClick={() => {
                   setSelectedFile(null);
                   setPreview('/userImage.jpg');
