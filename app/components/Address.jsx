@@ -18,7 +18,7 @@ export default function Address({ profileData, handleChange, handleSubmit }) {
   };
 
   return (
-    <div className="flex w-full flex-col justify-between rounded-xl bg-white p-5">
+    <div className="flex w-full flex-col justify-between rounded-xl bg-blue-50 p-5">
       <div className="flex justify-between">
         <h3 className="text-lg font-bold text-gray-700">Address</h3>
         <Button
