@@ -2,6 +2,7 @@ import PersonalInfo from '@/components/PersonalInfo';
 import Address from '@/components/Address';
 import { useState, useEffect } from 'react';
 import ProfileImageWrapper from '@/components/ProfileImageWrapper';
+import AutorenewIcon from '@mui/icons-material/Autorenew';
 import PropTypes from 'prop-types';
 
 export default function Profile({ userID = 5 }) {
@@ -75,7 +76,12 @@ export default function Profile({ userID = 5 }) {
   };
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return (
+      <div className="flex items-center justify-center p-5 text-lg">
+        <AutorenewIcon className="mr-2" />
+        Loading...
+      </div>
+    );
   }
 
   return (
