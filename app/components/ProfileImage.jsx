@@ -6,9 +6,9 @@ export default function ProfileImage({ handleFormStateChange, user }) {
   const imagePreview = user?.image || '/userImage.jpg';
 
   return (
-    <div className="flex w-full justify-between rounded-xl bg-blue-50 p-5">
+    <div className="flex flex-row justify-between rounded-xl bg-blue-50 p-5 xs:flex-col sm:flex-row">
       <div className="flex gap-5">
-        <div className="size-[100px] overflow-hidden rounded-3xl object-cover">
+        <div className="size-[100px] overflow-hidden rounded-3xl">
           <Image
             className="size-full rounded-3xl object-cover"
             src={imagePreview}
@@ -25,7 +25,7 @@ export default function ProfileImage({ handleFormStateChange, user }) {
           <p className="text-gray-700">Denmark, Copenhagen</p>
         </div>
       </div>
-      <div>
+      <div className="mt-0 xs:mt-4 xs:self-start sm:self-start">
         <Button value="Redigere" onClick={handleFormStateChange} />
       </div>
     </div>
@@ -33,8 +33,8 @@ export default function ProfileImage({ handleFormStateChange, user }) {
 }
 
 ProfileImage.propTypes = {
-  handleFormStateChange: PropTypes.func.isRequired, // Validate as a required function
+  handleFormStateChange: PropTypes.func.isRequired,
   user: PropTypes.shape({
-    image: PropTypes.string, // Validate `image` as a string
-  }).isRequired, // Ensure `user` is a required object
+    image: PropTypes.string,
+  }).isRequired,
 };
