@@ -6,14 +6,10 @@ import { AppProvider } from '@toolpad/core/AppProvider';
 import { DashboardLayout } from '@toolpad/core/DashboardLayout';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
-import ChatIcon from '@mui/icons-material/Chat';
-import SecurityIcon from '@mui/icons-material/Security';
 import DeleteIcon from '@mui/icons-material/Delete';
 import Profile from '@/components/Profile';
-import Messages from '@/components/Messages';
-import Delete from '@/components/Delete';
-import Security from '@/components/Security';
-import StickyHeadTable from '@/components/Results';
+import Delete from '@/app/(profile)/delete/page';
+import StickyHeadTable from '@/app/(profile)/results/page';
 
 const NAVIGATION = [
   {
@@ -25,16 +21,6 @@ const NAVIGATION = [
     segment: 'orders',
     title: 'Resultathistorik',
     icon: <FormatListBulletedIcon />,
-  },
-  {
-    segment: 'sales',
-    title: 'Beskeder',
-    icon: <ChatIcon />,
-  },
-  {
-    segment: 'traffic',
-    title: 'Sikkerhed',
-    icon: <SecurityIcon />,
   },
   {
     segment: 'integrations',
@@ -49,7 +35,7 @@ const demoTheme = extendTheme({
   breakpoints: {
     values: {
       xs: 0,
-      sm: 950,
+      sm: 600,
       md: 950,
       lg: 1200,
       xl: 1536,
@@ -80,10 +66,6 @@ export default function DashboardLayoutBasic() {
         return <Profile />;
       case '/orders':
         return <StickyHeadTable />;
-      case '/sales':
-        return <Messages />;
-      case '/traffic':
-        return <Security />;
       case '/integrations':
         return <Delete />;
       default:
