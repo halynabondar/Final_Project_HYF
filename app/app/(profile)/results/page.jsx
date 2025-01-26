@@ -1,3 +1,5 @@
+'use client';
+
 import * as React from 'react';
 import Paper from '@mui/material/Paper';
 import Table from '@mui/material/Table';
@@ -9,26 +11,27 @@ import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
 import DoneIcon from '@mui/icons-material/Done';
 import CloseIcon from '@mui/icons-material/Close';
+import AutorenewIcon from '@mui/icons-material/Autorenew';
 import { useState, useEffect } from 'react';
 
 const columns = [
-  { id: 'dato', label: 'Dato', minWidth: 200, align: 'center' },
+  { id: 'dato', label: 'Dato', minWidth: 100, align: 'center' },
   {
     id: 'korrekt',
     label: 'Korrekt',
-    minWidth: 150,
+    minWidth: 100,
     align: 'center',
   },
   {
     id: 'ukorrekt',
     label: 'Ukorrekt',
-    minWidth: 150,
+    minWidth: 100,
     align: 'center',
   },
   {
     id: 'resultater',
     label: 'Resultater',
-    minWidth: 200,
+    minWidth: 100,
     align: 'center',
   },
 ];
@@ -45,15 +48,24 @@ export default function StickyHeadTable() {
       try {
         setLoading(true);
         const response = await fetch('/api/results');
+
+        if (!response.ok) {
+          throw new Error('Failed to fetch results');
+        }
+
         const data = await response.json();
 
         // Map data to table rows format
         const formattedRows = data.map((item) => ({
-          dato: item.answered_at,
-          korrekt: item.is_correct,
-          ukorrekt: item.incorrect_answers,
+          dato: new Intl.DateTimeFormat('en-GB', {
+            day: '2-digit',
+            month: '2-digit',
+            year: 'numeric',
+          }).format(new Date(item.test_date)),
+          korrekt: item.score,
+          ukorrekt: item.wrong_answers,
           resultater:
-            item.is_correct > 36 ? (
+            item.score > 36 ? (
               <DoneIcon className="text-green-600" />
             ) : (
               <CloseIcon className="text-red-600" />
@@ -63,6 +75,7 @@ export default function StickyHeadTable() {
         setRows(formattedRows);
       } catch (error) {
         console.error('Error fetching data:', error);
+        alert('Failed to load results. Please try again later.');
       } finally {
         setLoading(false);
       }
@@ -83,7 +96,10 @@ export default function StickyHeadTable() {
   return (
     <Paper sx={{ width: '100%', overflow: 'hidden' }}>
       {loading ? (
-        <div className="flex items-center justify-center p-5">Loading...</div>
+        <div className="flex items-center justify-center p-5 text-lg">
+          <AutorenewIcon className="mr-2" />
+          Loading...
+        </div>
       ) : (
         <>
           <TableContainer>
@@ -102,30 +118,39 @@ export default function StickyHeadTable() {
                   ))}
                 </TableRow>
               </TableHead>
-              <TableBody>
+              <TableBody className="bg-white">
+                {rows.length === 0 && !loading && (
+                  <TableRow>
+                    <TableCell
+                      colSpan={columns.length}
+                      align="center"
+                      className="text-lg text-gray-600"
+                    >
+                      No results found.
+                    </TableCell>
+                  </TableRow>
+                )}
                 {rows
                   .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                  .map((row) => {
-                    return (
-                      <TableRow
-                        hover
-                        role="checkbox"
-                        tabIndex={-1}
-                        key={row.code}
-                      >
-                        {columns.map((column) => {
-                          const value = row[column.id];
-                          return (
-                            <TableCell key={column.id} align={column.align}>
-                              {column.format && typeof value === 'number'
-                                ? column.format(value)
-                                : value}
-                            </TableCell>
-                          );
-                        })}
-                      </TableRow>
-                    );
-                  })}
+                  .map((row) => (
+                    <TableRow
+                      hover
+                      role="checkbox"
+                      tabIndex={-1}
+                      key={row.dato}
+                    >
+                      {columns.map((column) => {
+                        const value = row[column.id];
+                        return (
+                          <TableCell key={column.id} align={column.align}>
+                            {column.format && typeof value === 'number'
+                              ? column.format(value)
+                              : value}
+                          </TableCell>
+                        );
+                      })}
+                    </TableRow>
+                  ))}
               </TableBody>
             </Table>
           </TableContainer>
