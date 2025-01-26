@@ -42,7 +42,7 @@ export default function Address({ profileData, handleChange, handleSubmit }) {
           </div>
         </div>
         <div className="flex flex-col gap-2 text-blue-500">
-          <div>
+          <div className="ml-3">
             {formMode === 'show' ? (
               <div>{profileData.country}</div>
             ) : (
@@ -55,7 +55,7 @@ export default function Address({ profileData, handleChange, handleSubmit }) {
               />
             )}
           </div>
-          <div>
+          <div className="ml-3">
             {formMode === 'show' ? (
               <div>{profileData.town}</div>
             ) : (
@@ -68,8 +68,7 @@ export default function Address({ profileData, handleChange, handleSubmit }) {
               />
             )}
           </div>
-          <div>
-            {' '}
+          <div className="ml-3">
             {formMode === 'show' ? (
               <div>{profileData.address}</div>
             ) : (
