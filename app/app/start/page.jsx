@@ -1,14 +1,13 @@
 'use client';
 
 import Button from '@/components/Button';
-import { style, layout } from '@/app/style';
 import Explore from '../../components/Explore.jsx';
 import {
   faCircleDollarToSlot,
+  faList,
   faVolumeUp,
-  faLanguage,
 } from '@fortawesome/free-solid-svg-icons';
-import { faComments } from '@fortawesome/free-regular-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Link from 'next/link';
 import Image from 'next/image';
 
@@ -16,38 +15,29 @@ function WelcomePage() {
   const exploreFeatures = [
     {
       id: 1,
-      icon: faVolumeUp,
+      icon: <FontAwesomeIcon icon={faVolumeUp} />,
       title: 'Text to Speech',
     },
     {
       id: 2,
-      icon: faLanguage,
-      title: 'Translation',
+      icon: <FontAwesomeIcon icon={faList} />,
+      title: 'Results history',
     },
     {
       id: 3,
-      icon: faCircleDollarToSlot,
+      icon: <FontAwesomeIcon icon={faCircleDollarToSlot} />,
       title: 'Free of Charge',
-    },
-    {
-      id: 4,
-      icon: faComments,
-      title: 'Chat Blog',
     },
   ];
 
   return (
     <section>
-      <div
-        className={`${layout.section} flex-col items-center justify-center gap-10 md:flex-row`}
-      >
-        <div
-          className={`${style.flexCenter} max-w-[600px] md:max-w-screen-xs lg:max-w-[600px]`}
-        >
-          <h1 className={`${style.heading}`}>
+      <div className="flex flex-col items-center justify-center gap-10 py-2 sm:py-4 md:flex-row">
+        <div className="flex max-w-[600px] flex-col items-center justify-center md:max-w-[400px] lg:max-w-[600px]">
+          <h1 className="xs:text-[48px] xs:leading-[77px] w-full font-poppins text-[40px] font-semibold leading-[67px]">
             Velkommen <br /> til DKTestPrep
           </h1>
-          <p className={`${style.paragraph} my-6`}>
+          <p className="font-poppins text-[18px] font-normal leading-[30px]">
             Bliv klar til den danske indfødsretsprøve med selvtillid! Forbereder
             du dig på den danske indfødsretsprøve? DKTestPrep er her for at
             hjælpe dig med at få succes. Med vores interaktive øvequizzer og
@@ -58,7 +48,7 @@ function WelcomePage() {
             <Button value="Log ind" styles={`mt-5`} />
           </Link>
         </div>
-        <div className={`${style.flexCenter} max-w-[600px] rounded-2xl`}>
+        <div className="flex max-w-[600px] flex-col items-center justify-center rounded-2xl">
           <Image
             src="/imageWelcome.jpg"
             alt="welcome"
@@ -69,11 +59,9 @@ function WelcomePage() {
           />
         </div>
       </div>
-      <div
-        className={`flex flex-row justify-center xs:flex-wrap xs:gap-8 ss:flex-wrap ss:gap-10 sm:flex-wrap sm:gap-10 md:gap-20 ${style.marginY}`}
-      >
+      <div className="ss:flex-wrap xs:flex-wrap ss:gap-10 xs:gap-8 my-4 flex flex-row justify-center sm:my-10 sm:flex-wrap sm:gap-10 md:gap-20">
         {exploreFeatures.map((feature) => (
-          <Explore key={feature.id} {...feature} />
+          <Explore key={feature.id} icon={feature.icon} title={feature.title} />
         ))}
       </div>
     </section>
