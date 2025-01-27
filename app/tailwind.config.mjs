@@ -15,6 +15,9 @@ export default {
         lg: "1200px",
         xl: "1700px",
       },
+      fontFamily: {
+        poppins: ["Poppins", "sans-serif"],
+      },
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
@@ -22,4 +25,4 @@ export default {
     },
   },
   plugins: [],
-};
+  };
