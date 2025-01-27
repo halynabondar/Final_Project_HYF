@@ -15,7 +15,7 @@ import MenuItem from '@mui/material/MenuItem';
 import { AccountCircle } from '@mui/icons-material';
 import Link from 'next/link';
 
-const pages = ['Start', 'Om Os', 'Test', 'Blog'];
+const pages = ['Start', 'Om Os', 'Test'];
 const settings = [
   {
     title: 'Min Profil',
@@ -172,6 +172,7 @@ function ResponsiveAppBar() {
                     borderRadius: '50%',
                     width: '30px',
                     height: '30px',
+                    color: '#3B81F6',
                   }}
                 />
               </IconButton>
