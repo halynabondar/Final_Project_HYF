@@ -1,3 +1,4 @@
+'use client';
 import '../globals.css';
 import clsx from 'clsx';
 import TableContainer from '@mui/material/TableContainer';
@@ -6,8 +7,23 @@ import TableBody from '@mui/material/TableBody';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import TableCell from '@mui/material/TableCell';
+import { useEffect, useState } from 'react';
 
 const ResultsPage = () => {
+  const [results, setResults] = useState([]);
+
+  useEffect(() => {
+    const getResults = async () => {
+      try {
+        const res = await fetch('/api/results');
+        const data = await res.json();
+        setResults(data);
+      } catch (error) {
+        console.error('Error:', error.message);
+      }
+    };
+    getResults();
+  }, []);
   return (
     <section className="mx-auto max-w-4xl rounded-2xl p-10">
       <h1 className="text-center text-2xl font-semibold">Dine Resultater</h1>
@@ -37,20 +53,22 @@ const ResultsPage = () => {
             {/*Table Body */}
 
             <TableBody>
-              <TableRow>
-                <TableCell className="border border-gray-300 px-4 py-2">
-                  12.3.2024
-                </TableCell>
-                <TableCell className="flex items-center justify-center gap-2 border border-gray-300 px-4 py-2">
-                  <span>Full Name</span>
-                </TableCell>
-                <TableCell className="border border-gray-300 px-4 py-2">
-                  36
-                </TableCell>
-                <TableCell className="border border-gray-300 px-4 py-2">
-                  4
-                </TableCell>
-              </TableRow>
+              {results.map((result) => (
+                <TableRow key={results.id}>
+                  <TableCell className="border border-gray-300 px-4 py-2">
+                    {new Date(result.test_date).toLocaleDateString()}
+                  </TableCell>
+                  <TableCell className="flex items-center justify-center gap-2 border border-gray-300 px-4 py-2">
+                    <span>{results.user_name}</span>
+                  </TableCell>
+                  <TableCell className="border border-gray-300 px-4 py-2">
+                    {results.score}
+                  </TableCell>
+                  <TableCell className="border border-gray-300 px-4 py-2">
+                    {results.wrong_answer}
+                  </TableCell>
+                </TableRow>
+              ))}
             </TableBody>
           </Table>
         </TableContainer>
