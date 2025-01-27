@@ -6,7 +6,6 @@ import PreviousNext from '../../components/Prevnext';
 import Button from '../../components/Button';
 import CountdownTimer from '../../components/CountdownTimer';
 import AutorenewIcon from '@mui/icons-material/Autorenew';
-import '../globals.css';
 /* import Overview from '../../components/Overview'; -- to be used to connect to overview page*/
 
 function Exam() {

@@ -9,7 +9,6 @@ import {
   faListCheck,
 } from '@fortawesome/free-solid-svg-icons';
 import Button from '../../components/Button';
-import '../globals.css';
 
 const ExamInstructions = () => {
   return (

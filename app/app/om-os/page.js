@@ -1,5 +1,3 @@
-import '../globals.css';
-
 const AboutPage = () => {
   return (
     <section className="mx-auto max-w-4xl space-y-12 px-6 py-12">
