@@ -28,8 +28,6 @@ function SignInPage() {
                         <div className="flex flex-col gap-1 mb-5">
                             <div className="flex justify-between">
                                 <label htmlFor="password" className="font-bold ml-1">Adgangskode</label>
-                                <Link href="/start" className="text-blue-400 text-center underline text-sm">Glemt
-                                    adgangskode?</Link>
                             </div>
                             <input className="p-2 border rounded-xl hover:border-blue-300 duration-300" minLength="8"
                                    type="password"
