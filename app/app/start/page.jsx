@@ -42,7 +42,7 @@ function WelcomePage() {
         className={`${layout.section} flex-col items-center justify-center gap-10 md:flex-row`}
       >
         <div
-          className={`${style.flexCenter} max-w-[600px] md:max-w-[400px] lg:max-w-[600px]`}
+          className={`${style.flexCenter} max-w-[600px] md:max-w-screen-xs lg:max-w-[600px]`}
         >
           <h1 className={`${style.heading}`}>
             Velkommen <br /> til DKTestPrep
@@ -70,7 +70,7 @@ function WelcomePage() {
         </div>
       </div>
       <div
-        className={`ss:flex-wrap xs:flex-wrap ss:gap-10 xs:gap-8 flex flex-row justify-center sm:flex-wrap sm:gap-10 md:gap-20 ${style.marginY}`}
+        className={`flex flex-row justify-center xs:flex-wrap xs:gap-8 ss:flex-wrap ss:gap-10 sm:flex-wrap sm:gap-10 md:gap-20 ${style.marginY}`}
       >
         {exploreFeatures.map((feature) => (
           <Explore key={feature.id} {...feature} />
