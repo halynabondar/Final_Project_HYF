@@ -15,8 +15,17 @@ import MenuItem from '@mui/material/MenuItem';
 import { AccountCircle } from '@mui/icons-material';
 import Link from 'next/link';
 
-const pages = ['Start', 'Om Os', 'Test', 'Mine Resultater', 'Blog'];
-const settings = ['Profil', 'Konto', 'Dashboard', 'Log ind'];
+const pages = ['Start', 'Om Os', 'Test'];
+const settings = [
+  {
+    title: 'Min Profil',
+    path: '/profile',
+  },
+  {
+    title: 'Log ind',
+    path: '/signin',
+  },
+];
 
 function ResponsiveAppBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -57,7 +66,15 @@ function ResponsiveAppBar() {
               DKTestPrep
             </Typography>
           </Link>
-          <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+          <Box
+            sx={{
+              flexGrow: 1,
+              display: {
+                xs: 'flex',
+                md: 'none',
+              },
+            }}
+          >
             <IconButton
               size="large"
               aria-label="account of current user"
@@ -88,12 +105,9 @@ function ResponsiveAppBar() {
                 <MenuItem
                   key={page}
                   onClick={handleCloseNavMenu}
-                  className="pl-5 pr-10"
+                  className="pl-7 pr-12"
                 >
-                  <Link
-                    href={`/${page.toLowerCase().replace(/ /g, '-')}`}
-                    passHref
-                  >
+                  <Link href={`/${page.toLowerCase().replace(/ /g, '-')}`}>
                     <Typography sx={{ textAlign: 'center' }}>{page}</Typography>
                   </Link>
                 </MenuItem>
@@ -158,6 +172,7 @@ function ResponsiveAppBar() {
                     borderRadius: '50%',
                     width: '30px',
                     height: '30px',
+                    color: '#3B81F6',
                   }}
                 />
               </IconButton>
@@ -179,29 +194,19 @@ function ResponsiveAppBar() {
               onClose={handleCloseUserMenu}
             >
               {settings.map((setting) => (
-                <MenuItem
-                  key={setting}
-                  onClick={handleCloseUserMenu}
-                  sx={{ pl: 3, pr: 8 }}
-                >
-                  {setting === 'Log ind' ? (
-                    <Link href="/signin" passHref>
-                      <Typography
-                        sx={{
-                          textAlign: 'center',
-                          textDecoration: 'none',
-                          color: 'inherit',
-                        }}
-                      >
-                        {setting}
-                      </Typography>
-                    </Link>
-                  ) : (
-                    <Typography sx={{ textAlign: 'center' }}>
-                      {setting}
+                <Link key={setting.path} href={setting.path} passHref>
+                  <MenuItem onClick={handleCloseUserMenu} sx={{ pl: 3, pr: 8 }}>
+                    <Typography
+                      sx={{
+                        textAlign: 'center',
+                        textDecoration: 'none',
+                        color: 'inherit',
+                      }}
+                    >
+                      {setting.title}
                     </Typography>
-                  )}
-                </MenuItem>
+                  </MenuItem>
+                </Link>
               ))}
             </Menu>
           </Box>
