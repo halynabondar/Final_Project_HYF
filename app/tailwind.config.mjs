@@ -7,6 +7,14 @@ export default {
   ],
   theme: {
     extend: {
+      screens: {
+        xs: "400px",
+        ss: "520px",
+        sm: "768px",
+        md: "1060px",
+        lg: "1200px",
+        xl: "1700px",
+      },
       fontFamily: {
         poppins: ["Poppins", "sans-serif"],
       },
