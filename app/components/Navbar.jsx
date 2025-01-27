@@ -17,11 +17,22 @@ import Link from 'next/link';
 
 const pages = ['Start', 'Om Os', 'Test', 'Blog'];
 const settings = [
-  'Profil',
-  'Resultathistorik',
-  'Beskeder',
-  'Sikkerhed',
-  'Log ind',
+  {
+    title: 'Profil',
+    path: '/profile',
+  },
+  {
+    title: 'Resultathistorik',
+    path: '/results',
+  },
+  {
+    title: 'Slet konto',
+    path: '/delete',
+  },
+  {
+    title: 'Log ind',
+    path: '/signin',
+  },
 ];
 
 function ResponsiveAppBar() {
@@ -191,14 +202,11 @@ function ResponsiveAppBar() {
             >
               {settings.map((setting) => (
                 <MenuItem
-                  key={setting}
+                  key={setting.path}
                   onClick={handleCloseUserMenu}
                   sx={{ pl: 3, pr: 8 }}
                 >
-                  <Link
-                    href={`/${setting.toLowerCase().replace(/ /g, '-')}`}
-                    passHref
-                  >
+                  <Link href={setting.path} passHref>
                     <Typography
                       sx={{
                         textAlign: 'center',
@@ -206,7 +214,7 @@ function ResponsiveAppBar() {
                         color: 'inherit',
                       }}
                     >
-                      {setting}
+                      {setting.title}
                     </Typography>
                   </Link>
                 </MenuItem>
