@@ -46,8 +46,68 @@ export default function SignUpPage() {
               />
             </div>
           </div>
-          <div className="">
-            <div className="mb-5 flex flex-col gap-1">
+          <div className="mt-2 flex w-full flex-row gap-5">
+            <div className="flex grow flex-col gap-1">
+              <label className="ml-1 font-bold" htmlFor="land">
+                Land
+              </label>
+              <input
+                className="rounded-xl border p-2 duration-300 hover:border-blue-300"
+                autoComplete="country-name"
+                type="text"
+                name="land"
+                id="land"
+                required
+                placeholder="Indtast land"
+              />
+            </div>
+            <div className="mb-3 flex grow flex-col gap-1">
+              <label htmlFor="town" className="ml-1 font-bold">
+                By
+              </label>
+              <input
+                className="rounded-xl border p-2 duration-300 hover:border-blue-300"
+                type="town"
+                name="town"
+                id="town"
+                autoComplete="address-level2"
+                required
+                placeholder="Indtast by"
+              />
+            </div>
+          </div>
+          <div className="mt-2 flex w-full flex-row gap-5">
+            <div className="flex grow flex-col gap-1">
+              <label className="ml-1 font-bold" htmlFor="adresse">
+                Adresse
+              </label>
+              <input
+                className="rounded-xl border p-2 duration-300 hover:border-blue-300"
+                autoComplete="street-address"
+                type="text"
+                name="adresse"
+                id="adresse"
+                required
+                placeholder="Indtast adresse"
+              />
+            </div>
+            <div className="mb-3 flex grow flex-col gap-1">
+              <label htmlFor="tel" className="ml-1 font-bold">
+                Telefonnummer
+              </label>
+              <input
+                className="rounded-xl border p-2 duration-300 hover:border-blue-300"
+                type="tel"
+                name="tel"
+                id="tel"
+                autoComplete="tel"
+                required
+                placeholder="Indtast telefonnummer"
+              />
+            </div>
+          </div>
+          <div className="flex w-full flex-col gap-5">
+            <div className="mb-3 flex flex-col gap-1">
               <label htmlFor="email" className="ml-1 font-bold">
                 E-mail
               </label>
@@ -58,10 +118,10 @@ export default function SignUpPage() {
                 id="email"
                 autoComplete="email"
                 required
-                placeholder="eksempel.e-mail@gmail.com"
+                placeholder="eksempel@gmail.com"
               />
             </div>
-            <div className="mb-5 flex flex-col gap-1">
+            <div className="mb-3 flex flex-col gap-1">
               <label htmlFor="password" className="ml-1 font-bold">
                 Adgangskode
               </label>
@@ -76,7 +136,7 @@ export default function SignUpPage() {
                 placeholder="Indtast mindst 8+ tegn"
               />
             </div>
-            <div className="mb-5 flex flex-col gap-1">
+            <div className="mb-3 flex flex-col gap-1">
               <label htmlFor="repeatPassword" className="ml-1 font-bold">
                 Bekræft adgangskode
               </label>
