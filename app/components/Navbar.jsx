@@ -18,16 +18,8 @@ import Link from 'next/link';
 const pages = ['Start', 'Om Os', 'Test', 'Blog'];
 const settings = [
   {
-    title: 'Profil',
+    title: 'Min Profil',
     path: '/profile',
-  },
-  {
-    title: 'Resultathistorik',
-    path: '/results',
-  },
-  {
-    title: 'Slet konto',
-    path: '/delete',
   },
   {
     title: 'Log ind',
@@ -201,12 +193,8 @@ function ResponsiveAppBar() {
               onClose={handleCloseUserMenu}
             >
               {settings.map((setting) => (
-                <MenuItem
-                  key={setting.path}
-                  onClick={handleCloseUserMenu}
-                  sx={{ pl: 3, pr: 8 }}
-                >
-                  <Link href={setting.path} passHref>
+                <Link key={setting.path} href={setting.path} passHref>
+                  <MenuItem onClick={handleCloseUserMenu} sx={{ pl: 3, pr: 8 }}>
                     <Typography
                       sx={{
                         textAlign: 'center',
@@ -216,8 +204,8 @@ function ResponsiveAppBar() {
                     >
                       {setting.title}
                     </Typography>
-                  </Link>
-                </MenuItem>
+                  </MenuItem>
+                </Link>
               ))}
             </Menu>
           </Box>
