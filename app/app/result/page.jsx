@@ -1,21 +1,19 @@
+import '../globals.css';
 import clsx from 'clsx';
+import TableContainer from '@mui/material/TableContainer';
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import TableCell from '@mui/material/TableCell';
 
-import {
-  TableContainer,
-  Table,
-  TableBody,
-  TableHead,
-  TableRow,
-  TableCell,
-} from '@mui/material';
-
-export default function ResultsPage() {
+const ResultsPage = () => {
   return (
-    <div className="mx-auto max-w-4xl rounded-2xl bg-white p-10 shadow-xl">
-      <h1 className="text-center">Dine Resultater</h1>
+    <section className="mx-auto max-w-4xl rounded-2xl p-10">
+      <h1 className="text-center text-2xl font-semibold">Dine Resultater</h1>
 
       {/* User Results Table */}
-      <div className="mb-10 rounded-lg bg-white p-6 shadow-md">
+      <div className="mb-10 rounded-lg p-6 shadow-md">
         <TableContainer>
           <Table className="w-full border-collapse border border-gray-300 text-center ">
             {/* Table Header */}
@@ -59,12 +57,12 @@ export default function ResultsPage() {
       </div>
 
       {/* Incorrect Answers Section */}
-      <div className="rounded-lg bg-white p-6 shadow-md">
-        <h2 className=" text-center text-black">Forkerte svar</h2>
+      <div className="rounded-lg p-6 shadow-md">
+        <h2 className="text-center  text-2xl font-semibold">Forkerte svar</h2>
         <div className="grid grid-cols-2 gap-3">
           {/* Example of One Answer Block */}
           {Array.from({ length: 6 }).map((_, index) => (
-            <div key={index} className={clsx('rounded-lg bg-gray-100 p-4')}>
+            <div key={index} className={clsx('rounded-lg bg-gray-200 p-4')}>
               {/* question  */}
               <h3 className={clsx('mb-2 text-lg font-semibold', 'text-black')}>
                 {index + 1}. Question
@@ -79,6 +77,8 @@ export default function ResultsPage() {
           ))}
         </div>
       </div>
-    </div>
+    </section>
   );
-}
+};
+
+export default ResultsPage;
