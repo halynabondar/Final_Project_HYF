@@ -19,7 +19,7 @@ function CountdownTimer({ duration, onTimeUp }) {
       setTimeLeft((prev) => {
         if (prev <= 1) {
           clearInterval(timer);
-          onTimeUp(navigate('/result'));
+          onTimeUp('');
           return 0;
         }
         return prev - 1;
