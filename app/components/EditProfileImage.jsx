@@ -35,7 +35,7 @@ export default function EditProfileImage({ handleFormStateChange, user }) {
   // Show alert message
   const showAlert = (message, severity) => {
     setAlert({ message, severity, visible: true });
-    setTimeout(() => setAlert({ ...alert, visible: false }), 3000); // Auto-hide alert after 3 seconds
+    setTimeout((prev) => setAlert({ ...prev, visible: false }), 3000); // Auto-hide alert after 3 seconds
   };
 
   // Handle form submission
@@ -63,9 +63,12 @@ export default function EditProfileImage({ handleFormStateChange, user }) {
     } catch (error) {
       console.error('Error uploading image:', error);
       showAlert('Error uploading image', 'error');
-    } finally {
-      handleFormStateChange();
     }
+
+    // Delay form state change to allow the alert to show
+    setTimeout(() => {
+      handleFormStateChange();
+    }, 2000);
   };
 
   return (
