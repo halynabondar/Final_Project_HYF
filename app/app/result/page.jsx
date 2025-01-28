@@ -11,7 +11,7 @@ import { useEffect, useState } from 'react';
 const ResultsPage = () => {
   const [error, setError] = useState(null);
   const [results, setResults] = useState([]);
-
+  const [loading, setLoading] = useState(true);
   useEffect(() => {
     const getResults = async () => {
       try {
@@ -24,10 +24,15 @@ const ResultsPage = () => {
       } catch (error) {
         console.error('Error:', error.message);
         setError(error.message);
+      } finally {
+        setLoading(false);
       }
     };
     getResults();
   }, []);
+  if (loading) {
+    return <div className="text-center">Loading...</div>;
+  }
   return (
     <section className="mx-auto max-w-4xl rounded-2xl p-4 sm:p-6 lg:p-10">
       <h1 className="text-center text-xl font-semibold sm:text-2xl">
@@ -60,22 +65,33 @@ const ResultsPage = () => {
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {results.map((result) => (
-                    <TableRow key={result.id}>
-                      <TableCell className="border border-gray-300 px-4 py-2">
-                        {new Date(result.test_date).toLocaleDateString()}
-                      </TableCell>
-                      <TableCell className="border border-gray-300 px-4 py-2">
-                        {result.user_name}
-                      </TableCell>
-                      <TableCell className="border border-gray-300 px-4 py-2">
-                        {result.score}
-                      </TableCell>
-                      <TableCell className="border border-gray-300 px-4 py-2">
-                        {result.wrong_answers}
+                  {results.length > 0 ? (
+                    results.map((result) => (
+                      <TableRow key={result.id}>
+                        <TableCell className="border border-gray-300 px-4 py-2">
+                          {new Date(result.test_date).toLocaleDateString()}
+                        </TableCell>
+                        <TableCell className="border border-gray-300 px-4 py-2">
+                          {result.user_name}
+                        </TableCell>
+                        <TableCell className="border border-gray-300 px-4 py-2">
+                          {result.score}
+                        </TableCell>
+                        <TableCell className="border border-gray-300 px-4 py-2">
+                          {result.wrong_answers}
+                        </TableCell>
+                      </TableRow>
+                    ))
+                  ) : (
+                    <TableRow>
+                      <TableCell
+                        colSpan={4}
+                        className="border border-gray-300 px-4 py-2 text-center"
+                      >
+                        Ingen resultater fundet.
                       </TableCell>
                     </TableRow>
-                  ))}
+                  )}
                 </TableBody>
               </Table>
             </div>
