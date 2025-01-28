@@ -28,8 +28,7 @@ export default function Delete() {
           ></input>
         </div>
         <div className="mt-2 flex gap-5">
-          <Button value="Gå tilbage" onClick={() => {}} />
-          <Button value="Start sletning" onClick={() => {}} />
+          <Button value="Slet konto" onClick={() => {}} />
         </div>
       </div>
     </div>
