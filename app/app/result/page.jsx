@@ -1,5 +1,4 @@
 'use client';
-import '../globals.css';
 import clsx from 'clsx';
 import TableContainer from '@mui/material/TableContainer';
 import Table from '@mui/material/Table';
