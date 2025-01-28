@@ -54,18 +54,18 @@ const ResultsPage = () => {
 
             <TableBody>
               {results.map((result) => (
-                <TableRow key={results.id}>
+                <TableRow key={result.id}>
                   <TableCell className="border border-gray-300 px-4 py-2">
                     {new Date(result.test_date).toLocaleDateString()}
                   </TableCell>
                   <TableCell className="flex items-center justify-center gap-2 border border-gray-300 px-4 py-2">
-                    <span>{results.user_name}</span>
+                    <span>{result.user_name}</span>
                   </TableCell>
                   <TableCell className="border border-gray-300 px-4 py-2">
-                    {results.score}
+                    {result.score}
                   </TableCell>
                   <TableCell className="border border-gray-300 px-4 py-2">
-                    {results.wrong_answer}
+                    {result.wrong_answers}
                   </TableCell>
                 </TableRow>
               ))}
