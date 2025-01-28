@@ -86,7 +86,7 @@ const ResultsPage = () => {
 
           {/* Incorrect Answers Section */}
           <div className="rounded-lg p-6 shadow-md">
-            <h2 className="text-center  text-2xl font-semibold">
+            <h2 className="mb-5 text-center text-2xl font-semibold">
               Forkerte svar
             </h2>
             <div className="grid grid-cols-2 gap-3">
