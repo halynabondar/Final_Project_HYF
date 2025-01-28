@@ -1,6 +1,4 @@
 'use client';
-import clsx from 'clsx';
-import TableContainer from '@mui/material/TableContainer';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableHead from '@mui/material/TableHead';
