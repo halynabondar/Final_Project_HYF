@@ -29,8 +29,10 @@ const ResultsPage = () => {
     getResults();
   }, []);
   return (
-    <section className="mx-auto max-w-4xl rounded-2xl p-10">
-      <h1 className="text-center text-2xl font-semibold">Dine Resultater</h1>
+    <section className="mx-auto max-w-4xl rounded-2xl p-4 sm:p-6 lg:p-10">
+      <h1 className="text-center text-xl font-semibold sm:text-2xl">
+        Dine Resultater
+      </h1>
       {error ? (
         <div className="mt-6 text-center text-red-500">
           <p className="text-lg font-semibold">Noget gik galt!</p>
@@ -38,11 +40,9 @@ const ResultsPage = () => {
         </div>
       ) : (
         <>
-          {/* User Results Table */}
           <div className="mb-10 rounded-lg p-6 shadow-md">
-            <TableContainer>
-              <Table className="w-full border-collapse border border-gray-300 text-center ">
-                {/* Table Header */}
+            <div className="overflow-x-auto">
+              <Table className="w-full border-collapse border border-gray-300 text-center">
                 <TableHead>
                   <TableRow className="bg-gray-200">
                     <TableCell className="border border-gray-300 px-4 py-2 font-bold">
@@ -59,17 +59,14 @@ const ResultsPage = () => {
                     </TableCell>
                   </TableRow>
                 </TableHead>
-
-                {/*Table Body */}
-
                 <TableBody>
                   {results.map((result) => (
                     <TableRow key={result.id}>
                       <TableCell className="border border-gray-300 px-4 py-2">
                         {new Date(result.test_date).toLocaleDateString()}
                       </TableCell>
-                      <TableCell className="flex items-center justify-center gap-2 border border-gray-300 px-4 py-2">
-                        <span>{result.user_name}</span>
+                      <TableCell className="border border-gray-300 px-4 py-2">
+                        {result.user_name}
                       </TableCell>
                       <TableCell className="border border-gray-300 px-4 py-2">
                         {result.score}
@@ -81,28 +78,23 @@ const ResultsPage = () => {
                   ))}
                 </TableBody>
               </Table>
-            </TableContainer>
+            </div>
           </div>
 
-          {/* Incorrect Answers Section */}
           <div className="rounded-lg p-6 shadow-md">
-            <h2 className="mb-5 text-center text-2xl font-semibold">
+            <h2 className="mb-5 text-center text-xl font-semibold sm:text-2xl">
               Forkerte svar
             </h2>
-            <div className="grid grid-cols-2 gap-3">
-              {/* Example of One Answer Block */}
+            <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
               {Array.from({ length: 6 }).map((_, index) => (
-                <div key={index} className={clsx('rounded-lg bg-gray-200 p-4')}>
-                  {/* question  */}
-                  <h3
-                    className={clsx('mb-2 text-lg font-semibold', 'text-black')}
-                  >
+                <div key={index} className="rounded-lg bg-gray-200 p-4">
+                  <h3 className="mb-2 text-base font-semibold text-black sm:text-lg">
                     {index + 1}. Question
                   </h3>
                   <p className="text-red-500">
                     <span className="font-semibold">Dit svar: </span>A : Spain
                   </p>
-                  <p className={clsx('text-green-500', 'font-semibold')}>
+                  <p className="font-semibold text-green-500">
                     <span>Korrekt svar: </span>C : Germany
                   </p>
                 </div>
