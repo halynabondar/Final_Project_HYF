@@ -8,8 +8,8 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
 import DeleteIcon from '@mui/icons-material/Delete';
 import Profile from '@/components/Profile';
-import Delete from '@/app/(profile)/delete/page';
-import StickyHeadTable from '@/app/(profile)/results/page';
+import Delete from '@/app/(gated)/(profile)/delete/page';
+import StickyHeadTable from '@/app/(gated)/(profile)/results/page';
 
 const NAVIGATION = [
   {
