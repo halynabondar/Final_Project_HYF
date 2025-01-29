@@ -15,8 +15,8 @@ const OverviewPage = () => {
   };
 
   return (
-    <div className="flex min-h-screen items-center justify-center px-2">
-      <div className="flex w-full max-w-4xl flex-col items-center space-y-6 md:flex-row md:space-x-6 md:space-y-0">
+    <div className="my-5 flex min-h-screen items-center justify-center px-6 sm:my-16 lg:mt-0">
+      <div className="flex w-full max-w-4xl flex-col items-center space-y-1 md:flex-row md:space-x-6 md:space-y-0">
         {/* Left Section: Text */}
         <div className="flex w-full flex-col items-center text-center md:w-1/2 md:items-start md:text-left">
           <h1 className="mb-4 text-3xl font-bold">Din spørgsmåloversigt</h1>
@@ -31,8 +31,8 @@ const OverviewPage = () => {
               <span className="mt-7 ">Ikke besvaret</span>
             </div>
             <div className="flex items-center">
-              <div className="mr-2 mt-1 size-6 rounded bg-gray-400 p-2"></div>
-              <span className="mt-1 ">Besvaret</span>
+              <div className="mb-4 mr-2 mt-1 size-6 rounded bg-gray-400 p-2 lg:md:sm:mb-10"></div>
+              <span className="mb-4 mt-1 lg:mb-10 ">Besvaret</span>
             </div>
           </div>
         </div>
