@@ -1,7 +1,28 @@
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import Button from '@/components/Button';
 
-export default function Delete() {
+export default function DeleteAccount() {
+  const handleDelete = async () => {
+    const confirmed = window.confirm(
+      'Er du sikker på, at du vil slette din konto?',
+    );
+    if (!confirmed) return;
+
+    try {
+      const response = await fetch('/api/delete', { method: 'DELETE' });
+      const data = await response.json();
+
+      if (response.ok) {
+        alert(data.message);
+        window.location.href = '/start';
+      } else {
+        alert(data.message);
+      }
+    } catch (error) {
+      console.error('Error deleting account:', error);
+    }
+  };
+
   return (
     <div className="mt-5 flex items-center justify-center">
       <div className="flex flex-col items-center justify-center gap-5 rounded-xl bg-blue-50 p-5">
@@ -28,7 +49,7 @@ export default function Delete() {
           ></input>
         </div>
         <div className="mt-2 flex gap-5">
-          <Button value="Slet konto" onClick={() => {}} />
+          <Button value="Slet konto" onClick={handleDelete} />
         </div>
       </div>
     </div>
