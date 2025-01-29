@@ -1,7 +1,10 @@
 import { redirect } from "next/navigation"
-import { signIn, auth, providerMap } from "@/auth.js"
+import { signIn, providerMap } from "@/auth.js"
 import { AuthError } from "next-auth"
 
+const SIGNIN_ERROR_URL = "/error";
+
+// eslint-disable-next-line prettier/prettier
 export default async function SignInPage(props: {
     searchParams: { callbackUrl: string | undefined }
 }) {
@@ -22,7 +25,7 @@ export default async function SignInPage(props: {
             >
                 <label htmlFor="email">
                     Email
-                    <input name="email" id="email" />
+                    <input name="email" id="email" type="password" />
                 </label>
                 <label htmlFor="password">
                     Password
@@ -31,7 +34,7 @@ export default async function SignInPage(props: {
                 <input type="submit" value="Sign In" />
             </form>
             {Object.values(providerMap).map((provider) => (
-                <form
+                <form key={provider}
                     action={async () => {
                         "use server"
                         try {

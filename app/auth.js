@@ -3,8 +3,7 @@ import { ZodError } from 'zod';
 import Credentials from 'next-auth/providers/credentials';
 import { signInSchema } from './lib/zod';
 // Your own logic for dealing with plaintext password strings; be careful!
-import { saltAndHashPassword } from '@/utils/password';
-import { verifyPassword } from '@/utils/password';
+import { saltAndHashPassword, verifyPassword } from '@/utils/password';
 import { getUserFromDb } from '@/utils/db';
 import PostgresAdapter from '@auth/pg-adapter';
 import { Pool } from '@neondatabase/serverless';
@@ -12,7 +11,7 @@ import type { Provider } from "next-auth/providers";
 
 export const { handlers, auth, signIn, signOut } = NextAuth(() => {
   // Create a `Pool` inside the request handler.
-  const pool = new Pool({ connectionString: process.env.DATABASE_URL });
+  const pool = new Pool({ connectionString: process.env.POSTGRES_URL });
   return {
     adapter: PostgresAdapter(pool),
     providers: [
