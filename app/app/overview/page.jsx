@@ -27,7 +27,7 @@ const OverviewPage = () => {
           </p>
           <div>
             <div className="mb-2 flex items-center">
-              <div className="mr-2 mt-7 size-6 rounded border border-gray-500 p-2"></div>
+              <div className="mr-2 mt-7 size-6 rounded border border-gray-500 bg-gray-100 p-2"></div>
               <span className="mt-7 ">Ikke besvaret</span>
             </div>
             <div className="flex items-center">
@@ -53,7 +53,7 @@ const OverviewPage = () => {
                   'aspect-square rounded border border-gray-500 text-center',
                   {
                     'bg-gray-400 border-gray-400': question.answered, // answered
-                    'border-gray-500': !question.answered, //not answered
+                    'bg-gray-100 border-gray-500': !question.answered, //not answered
                   },
                 )}
               >
