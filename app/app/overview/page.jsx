@@ -15,7 +15,7 @@ const OverviewPage = () => {
   };
 
   return (
-    <div className="my-5 flex min-h-screen items-center justify-center px-6 sm:my-16 lg:mt-0">
+    <div className="my-5 flex items-center justify-center px-6 sm:my-16 md:my-40 lg:my-40">
       <div className="flex w-full max-w-4xl flex-col items-center space-y-1 md:flex-row md:space-x-6 md:space-y-0">
         {/* Left Section: Text */}
         <div className="flex w-full flex-col items-center text-center md:w-1/2 md:items-start md:text-left">
