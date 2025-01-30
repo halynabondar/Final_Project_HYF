@@ -134,6 +134,7 @@ export default function StickyHeadTable() {
                   .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                   .map((row) => (
                     <TableRow
+                      className="text-gray-700"
                       hover
                       role="checkbox"
                       tabIndex={-1}
