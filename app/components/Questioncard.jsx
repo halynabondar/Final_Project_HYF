@@ -55,16 +55,16 @@ function QuestionCard({ question, answers, selectedAnswer, onAnswer }) {
   };
 
   return (
-    <div className="relative mx-auto w-full max-w-4xl rounded-xl  p-10">
+    <div className="relative mx-auto w-full max-w-4xl rounded-xl p-10">
       <button
         onClick={handleReadAloud}
-        className="absolute right-11 top-0 cursor-pointer text-blue-500 hover:text-blue-600"
+        className="absolute right-0 top-0 cursor-pointer text-blue-500 hover:text-blue-600 sm:right-11"
         aria-label="Read aloud"
       >
         <FontAwesomeIcon icon={faVolumeUp} size="lg" />
       </button>
 
-      <h2 className="mb-10 text-center text-2xl font-bold text-gray-800">
+      <h2 className="mb-10 text-center text-xl font-bold text-gray-800 sm:text-2xl">
         {question}
       </h2>
       <div className="flex flex-col items-center gap-3">
@@ -72,11 +72,11 @@ function QuestionCard({ question, answers, selectedAnswer, onAnswer }) {
           {Object.keys(answers).map((key) => (
             <button
               className={clsx(
-                'w-full max-w-3xl cursor-pointer rounded-lg border p-2 text-lg shadow-md transition-colors duration-300 focus:outline-none',
+                'w-full max-w-3xl cursor-pointer rounded-lg border p-2 text-base shadow-md transition-colors duration-300 focus:outline-none sm:text-lg',
                 {
-                  'border-gray-100 bg-gray-400 text-black':
+                  'border-gray-100 bg-gray-400 text-black hover:bg-gray-500':
                     selectedAnswer === key,
-                  'border-gray-100 bg-white text-gray-800':
+                  'border-gray-100 bg-white text-gray-800 hover:bg-gray-200':
                     selectedAnswer !== key,
                 },
               )}
