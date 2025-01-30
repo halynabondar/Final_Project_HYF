@@ -69,7 +69,10 @@ const ExamInstructions = () => {
               eksamensoversigten til at overvåge dit fremskridt. Den giver et
               klart overblik over besvarede og ubesvarede spørgsmål, så du kan
               holde dig organiseret under testen. Ved at klikke på et nummer i
-              oversigten vil du blive ført til det spørgsmål.
+              oversigten vil du blive ført til det spørgsmål.Du skal også klikke
+              på knappen “Indsend svar” på denne side for at afslutte eksamen.
+              Hvis du undlader at gøre det, vil eksamensresultaterne ikke blive
+              registreret.
             </span>
           </div>
         </div>
