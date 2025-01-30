@@ -6,7 +6,7 @@ import PreviousNext from '../../components/Prevnext';
 import Button from '../../components/Button';
 import CountdownTimer from '../../components/Countdowntimer';
 import AutorenewIcon from '@mui/icons-material/Autorenew';
-/* import Overview from '../../components/Overview'; -- to be used to connect to overview page*/
+import Overview from '../overview/page';
 
 function Exam() {
   const [questions, setQuestions] = useState([]);
@@ -14,7 +14,8 @@ function Exam() {
   const [userAnswers, setUserAnswers] = useState({});
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
-  /* const [isOverview, setIsOverview] = useState(false);  -- to be used to connect to overview page */
+  const [isOverview, setIsOverview] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const apiUrl = '/api/questions';
 
@@ -43,9 +44,12 @@ function Exam() {
   const handleAnswer = (answer) => {
     const updatedAnswers = { ...userAnswers, [currentQuestionIndex]: answer };
     setUserAnswers(updatedAnswers);
-    if (currentQuestionIndex < questions.length - 1) {
-      setCurrentQuestionIndex(currentQuestionIndex + 1);
-    }
+
+    setTimeout(() => {
+      if (currentQuestionIndex < questions.length - 1) {
+        setCurrentQuestionIndex(currentQuestionIndex + 1);
+      }
+    }, 300);
   };
 
   const handleNext = () => {
@@ -62,30 +66,41 @@ function Exam() {
     }
   };
 
-  // to be use for overview connection
-
-  /*   const handleQuestionClick = (index) => {
+  const handleQuestionClick = (index) => {
     setCurrentQuestionIndex(index);
     setIsOverview(false);
   };
 
   const handleOverviewButtonClick = () => {
     setIsOverview(true);
-  }; */
+  };
 
-  /*   if (isOverview) {
+  if (isOverview) {
     return (
       <Overview
         questions={questions}
         userAnswers={userAnswers}
         onQuestionClick={handleQuestionClick}
+        setIsSubmitting={setIsSubmitting}
       />
     );
-  } */
+  }
 
   const handleTimeUp = () => {
-    (''); // to be used for time up, automatically submit the exam
+    setIsSubmitting(true);
   };
+
+  if (isSubmitting) {
+    return (
+      <div className="flex min-h-screen items-center justify-center">
+        <AutorenewIcon
+          className="animate-spin text-blue-500"
+          style={{ fontSize: 40 }}
+        />
+        {'Submitting...'}
+      </div>
+    );
+  }
 
   if (isLoading) {
     return (
@@ -93,8 +108,8 @@ function Exam() {
         <AutorenewIcon
           className="animate-spin text-blue-500"
           style={{ fontSize: 40 }}
-        />{' '}
-        {/* Show the loading icon */}
+        />
+        {'Loading...'}
       </div>
     );
   }
@@ -120,17 +135,18 @@ function Exam() {
   const selectedAnswer = userAnswers[currentQuestionIndex] || null;
 
   return (
-    <section className="relative flex min-h-screen items-center justify-center">
-      <button
-        // onClick={handleOverviewButtonClick}
-        className="absolute right-4 top-4 rounded-md bg-blue-500 px-4 py-2 text-white hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400"
-      >
-        Overview
-      </button>
-      <div className="absolute inset-x-0 top-4">
-        <CountdownTimer duration={2700} onTimeUp={handleTimeUp} />{' '}
+    <section className="relative flex min-h-screen flex-col items-center justify-center p-4 sm:flex-row">
+      <div className="absolute left-1/2 top-4 flex w-full max-w-[785px] -translate-x-1/2 flex-col items-center justify-center px-4 sm:flex-row sm:justify-between">
+        <CountdownTimer duration={2700} onTimeUp={handleTimeUp} />
+        <div className="mt-2 sm:mr-4 sm:mt-0">
+          <Button
+            styles="bg-indigo-500 hover:bg-blue-700"
+            value="Overview"
+            onClick={handleOverviewButtonClick}
+          />
+        </div>
       </div>
-      <div className="mx-auto w-full max-w-4xl rounded-xl p-10">
+      <div className="mx-auto w-full max-w-4xl rounded-xl p-6 sm:p-10">
         <QuestionCard
           question={currentQuestion.question}
           answers={answers}
@@ -138,7 +154,7 @@ function Exam() {
           onAnswer={handleAnswer}
         />
 
-        <div>
+        <div className="mt-4 sm:mt-5">
           <PreviousNext
             showPrevious={currentQuestionIndex > 0}
             showNext={currentQuestionIndex < questions.length - 1}
@@ -146,7 +162,7 @@ function Exam() {
             onNext={handleNext}
           />
         </div>
-        <div className="mt-5 text-center text-sm text-gray-600">
+        <div className="mx-auto mt-8 flex max-w-xl items-center justify-center  text-center text-sm text-gray-600 sm:mt-5">
           <strong>
             {currentQuestionIndex + 1} / {questions.length}
           </strong>
