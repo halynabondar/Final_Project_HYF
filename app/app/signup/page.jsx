@@ -21,14 +21,13 @@ export default function SignUpPage() {
       return;
     }
 
+    delete userData.repeatPassword;
+
     try {
       const response = await fetch('api/auth/signup', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          ...userData,
-          password: userData.password,
-        }),
+        body: JSON.stringify({ ...userData }),
       });
 
       const result = await response.json();
@@ -60,7 +59,7 @@ export default function SignUpPage() {
                 className="rounded-xl border p-2 duration-300 hover:border-blue-300"
                 autoComplete="given-name"
                 type="text"
-                name="name"
+                name="first_name"
                 id="name"
                 required
                 placeholder="Indtast fornavn"
@@ -74,7 +73,7 @@ export default function SignUpPage() {
                 className="rounded-xl border p-2 duration-300 hover:border-blue-300"
                 autoComplete="family-name"
                 type="text"
-                name="surname"
+                name="last_name"
                 id="surname"
                 required
                 placeholder="Indtast efternavn"
@@ -90,7 +89,7 @@ export default function SignUpPage() {
                 className="rounded-xl border p-2 duration-300 hover:border-blue-300"
                 autoComplete="country-name"
                 type="text"
-                name="land"
+                name="country"
                 id="land"
                 required
                 placeholder="Indtast land"
@@ -120,8 +119,8 @@ export default function SignUpPage() {
                 className="rounded-xl border p-2 duration-300 hover:border-blue-300"
                 autoComplete="street-address"
                 type="text"
-                name="adresse"
-                id="adresse"
+                name="address"
+                id="address"
                 required
                 placeholder="Indtast adresse"
               />
@@ -133,7 +132,7 @@ export default function SignUpPage() {
               <input
                 className="rounded-xl border p-2 duration-300 hover:border-blue-300"
                 type="tel"
-                name="tel"
+                name="phone_number"
                 id="tel"
                 autoComplete="tel"
                 required

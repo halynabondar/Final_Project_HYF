@@ -12,7 +12,7 @@ export async function POST(req) {
       address,
       phone_number,
       email,
-      password_hash,
+      password,
     } = await req.json();
 
     // Basic validation
@@ -24,7 +24,7 @@ export async function POST(req) {
       !address ||
       !phone_number ||
       !email ||
-      !password_hash
+      !password
     ) {
       return NextResponse.json(
         { error: 'All fields are required' },
@@ -42,7 +42,7 @@ export async function POST(req) {
     }
 
     // Hash password and generate salt
-    const { salt, hash } = await saltAndHashPassword(password_hash);
+    const hash = await saltAndHashPassword(password);
 
     // Save user to database
     await db('users').insert({
@@ -54,7 +54,6 @@ export async function POST(req) {
       phone_number,
       email,
       password_hash: hash,
-      salt,
     });
 
     return NextResponse.json(

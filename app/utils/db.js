@@ -15,12 +15,10 @@ export const db = knex({
 export const getUserFromDb = async (email) => {
   try {
     // Query the database for a user with the given email
-    const user = await db('users')
-      .select('email', 'password_hash', 'salt')
+    return await db('users')
+      .select('id', 'email', 'password_hash')
       .where({ email })
       .first();
-
-    return user;
   } catch (error) {
     console.error('Error fetching user:', error.message);
     return null;

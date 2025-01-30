@@ -2,7 +2,7 @@
 
 import { signIn } from 'next-auth/react';
 import Button from '@/components/Button';
-import { startTransition, useState } from 'react';
+import { useState } from 'react';
 import Link from 'next/link';
 
 export default function SignInPage() {
@@ -12,20 +12,14 @@ export default function SignInPage() {
     event.preventDefault();
 
     const formData = new FormData(event.target);
-    const email = formData.get('email');
-    const password = formData.get('password');
-
-    const response = await fetch('api/auth/signin', {
-      method: 'POST',
-      body: JSON.stringify({ email, password }),
-      headers: { 'Content-Type': 'application/json' },
+    const response = await signIn('credentials', {
+      email: formData.get('email'),
+      password: formData.get('password'),
+      redirectTo: '/start',
     });
 
-    const data = await response.json();
-    if (response.ok) {
-      console.log('Successfully logged in', data);
-    } else {
-      setError('Failed to log in', data.error);
+    if (response?.error) {
+      setError('Email or password is incorrect');
     }
   };
 
@@ -36,19 +30,7 @@ export default function SignInPage() {
           Log ind
         </h1>
         {error && <p className="text-center text-red-500">{error}</p>}
-        <form
-          onSubmit={handleSignIn}
-          className="flex flex-col gap-5"
-          action={(formData) => {
-            startTransition(async () => {
-              await signIn('credentials', {
-                email: formData.get('email'),
-                password: formData.get('password'),
-                redirectTo: '/start',
-              });
-            });
-          }}
-        >
+        <form onSubmit={handleSignIn} className="flex flex-col gap-5">
           <div className="flex w-full flex-col gap-5">
             <div className="mb-3 flex flex-col gap-1">
               <label htmlFor="email" className="ml-1 font-bold">

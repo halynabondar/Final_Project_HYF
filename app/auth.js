@@ -1,7 +1,7 @@
 import NextAuth from 'next-auth';
 import Credentials from 'next-auth/providers/credentials';
-import knex from '@/app/api/knex';
-import bcrypt from 'bcryptjs';
+import { getUserFromDb } from '@/utils/db';
+import { verifyPassword } from '@/utils/password';
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
   providers: [
@@ -11,31 +11,30 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         password: { label: 'Password', type: 'password' },
       },
       async authorize(credentials) {
-        console.log('Credentials:', credentials);
-
         try {
-          const { email, password } = credentials;
-
-          const user = await knex('users')
-            .select('email', 'password')
-            .where({ email })
-            .first();
+          const user = await getUserFromDb(credentials.email);
 
           if (!user) {
             throw new Error('Invalid email or password');
           }
 
           // Compare hashed password using bcrypt
-          const isValidPassword = await bcrypt.compare(password, user.password);
+          const isValidPassword = await verifyPassword(
+            credentials.password,
+            user.password_hash,
+          );
           if (!isValidPassword) {
             throw new Error('Invalid email or password');
           }
 
-          return { id: user.id, name: user.name, email: user.email };
+          return { id: user.id, email: user.email };
         } catch (error) {
           console.error('Error fetching user:', error.message);
           return null;
         }
+      },
+      pages: {
+        signIn: '/signin',
       },
     }),
   ],
