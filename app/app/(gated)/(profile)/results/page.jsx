@@ -124,7 +124,7 @@ export default function StickyHeadTable() {
                     <TableCell
                       colSpan={columns.length}
                       align="center"
-                      className="text-lg text-gray-600"
+                      className="text-lg text-gray-700"
                     >
                       No results found.
                     </TableCell>
@@ -142,7 +142,11 @@ export default function StickyHeadTable() {
                       {columns.map((column) => {
                         const value = row[column.id];
                         return (
-                          <TableCell key={column.id} align={column.align}>
+                          <TableCell
+                            className="text-gray-700"
+                            key={column.id}
+                            align={column.align}
+                          >
                             {column.format && typeof value === 'number'
                               ? column.format(value)
                               : value}
