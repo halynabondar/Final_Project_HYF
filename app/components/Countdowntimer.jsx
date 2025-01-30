@@ -30,8 +30,10 @@ function CountdownTimer({ duration, onTimeUp }) {
   }, [onTimeUp]);
 
   return (
-    <div className="text-center text-lg font-bold">
-      Time Left: {formatTime(timeLeft)}
+    <div className="flex justify-center">
+      <div className="max-w-xl rounded-xl border-2 bg-indigo-500 px-4 py-2 text-center text-lg font-bold text-white shadow-xl">
+        Tid Tilbage: {formatTime(timeLeft)}
+      </div>
     </div>
   );
 }
