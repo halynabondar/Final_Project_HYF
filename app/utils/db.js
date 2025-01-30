@@ -1,8 +1,6 @@
-// Example: Fetch user from a database (replace with your DB logic)
 import knex from '@/app/api/knex';
 
 export const getUserFromDb = async (email) => {
-  // Mock database logic
   try {
     // Query the database for a user with the given email
     const user = await knex('users')
