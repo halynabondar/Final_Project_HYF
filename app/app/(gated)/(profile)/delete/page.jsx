@@ -1,3 +1,5 @@
+'use client';
+
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import Button from '@/components/Button';
 import { useRouter } from 'next/navigation';
