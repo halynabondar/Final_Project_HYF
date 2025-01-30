@@ -20,20 +20,33 @@ export async function GET() {
 
 export async function POST(req) {
   try {
-    const userAnswers = await req.json();
+    const { user_id, userAnswers } = await req.json();
 
-    const questionIds = Object.keys(userAnswers);
+    const finalUserId = user_id || 5; // Using a temporary value for now
 
-    const correctAnswers = await knex('questions')
+    const questionIds = Object.keys(userAnswers).map(Number);
+
+    const questions = await knex('questions')
       .whereIn('id', questionIds)
-      .select('id', 'correctanswers');
+      .select('id', 'question', 'answers', 'correctanswer');
 
-    const results = correctAnswers.map((question) => ({
-      questionId: question.id,
-      isCorrect: userAnswers[question.id] === question.correctanswers,
+    const results = questions.map((question) => ({
+      id: question.id,
+      question: question.question,
+      answers: question.answers,
+      correctAnswer: question.correctanswer,
+      userAnswer: userAnswers[question.id],
+      isCorrect: userAnswers[question.id] === question.correctanswer,
     }));
 
     const score = results.filter((result) => result.isCorrect).length;
+    const wrong_answers = questions.length - score;
+
+    await knex('result_history').insert({
+      user_id: finalUserId,
+      score,
+      wrong_answers,
+    });
 
     return NextResponse.json({ results, score });
   } catch (error) {
