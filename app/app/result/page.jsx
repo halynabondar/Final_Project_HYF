@@ -1,124 +1,145 @@
 'use client';
+
+import { useEffect, useState } from 'react';
+import Link from 'next/link';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import TableCell from '@mui/material/TableCell';
-import { useEffect, useState } from 'react';
 
-const ResultsPage = () => {
-  const [error, setError] = useState(null);
+const Results = () => {
+  const [score, setScore] = useState(null);
   const [results, setResults] = useState([]);
-  const [loading, setLoading] = useState(true);
-  useEffect(() => {
-    const getResults = async () => {
-      try {
-        const res = await fetch('/api/results');
-        if (!res.ok) {
-          throw new Error('Failed to load results, please try again later');
-        }
-        const data = await res.json();
-        setResults(data);
-      } catch (error) {
-        console.error('Error:', error.message);
-        setError(error.message);
-      } finally {
-        setLoading(false);
-      }
-    };
-    getResults();
-  }, []);
-  if (loading) {
-    return <div className="text-center">Loading...</div>;
-  }
-  return (
-    <section className="mx-auto max-w-4xl rounded-2xl p-4 sm:p-6 lg:p-10">
-      <h1 className="text-center text-xl font-semibold sm:text-2xl">
-        Dine Resultater
-      </h1>
-      {error ? (
-        <div className="mt-6 text-center text-red-500">
-          <p className="text-lg font-semibold">Noget gik galt!</p>
-          <p>{error}</p>
-        </div>
-      ) : (
-        <>
-          <div className="mb-10 rounded-lg p-6 shadow-md">
-            <div className="overflow-x-auto">
-              <Table className="w-full border-collapse border border-gray-300 text-center">
-                <TableHead>
-                  <TableRow className="bg-gray-200">
-                    <TableCell className="border border-gray-300 px-4 py-2 font-bold">
-                      Dato
-                    </TableCell>
-                    <TableCell className="border border-gray-300 px-4 py-2 font-bold">
-                      Bruger
-                    </TableCell>
-                    <TableCell className="border border-gray-300 px-4 py-2 font-bold">
-                      Korrek
-                    </TableCell>
-                    <TableCell className="border border-gray-300 px-4 py-2 font-bold">
-                      Ukorrekt
-                    </TableCell>
-                  </TableRow>
-                </TableHead>
-                <TableBody>
-                  {results.length > 0 ? (
-                    results.map((result) => (
-                      <TableRow key={result.id}>
-                        <TableCell className="border border-gray-300 px-4 py-2">
-                          {new Date(result.test_date).toLocaleDateString()}
-                        </TableCell>
-                        <TableCell className="border border-gray-300 px-4 py-2">
-                          {result.user_name}
-                        </TableCell>
-                        <TableCell className="border border-gray-300 px-4 py-2">
-                          {result.score}
-                        </TableCell>
-                        <TableCell className="border border-gray-300 px-4 py-2">
-                          {result.wrong_answers}
-                        </TableCell>
-                      </TableRow>
-                    ))
-                  ) : (
-                    <TableRow>
-                      <TableCell
-                        colSpan={4}
-                        className="border border-gray-300 px-4 py-2 text-center"
-                      >
-                        Ingen resultater fundet.
-                      </TableCell>
-                    </TableRow>
-                  )}
-                </TableBody>
-              </Table>
-            </div>
-          </div>
+  const [totalQuestions, setTotalQuestions] = useState(null);
+  const [currentDate, setCurrentDate] = useState(null);
 
-          <div className="rounded-lg p-6 shadow-md">
-            <h2 className="mb-5 text-center text-xl font-semibold sm:text-2xl">
-              Forkerte svar
-            </h2>
-            <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
-              {Array.from({ length: 6 }).map((_, index) => (
-                <div key={index} className="rounded-lg bg-gray-200 p-4">
-                  <h3 className="mb-2 text-base font-semibold text-black sm:text-lg">
-                    {index + 1}. Question
-                  </h3>
-                  <p className="text-red-500">
-                    <span className="font-semibold">Dit svar: </span>A : Spain
+  useEffect(() => {
+    const score = sessionStorage.getItem('score');
+    const results = sessionStorage.getItem('results');
+    const totalQuestions = sessionStorage.getItem('totalQuestions');
+
+    if (score && results && totalQuestions) {
+      setScore(score);
+      setResults(JSON.parse(results));
+      setTotalQuestions(totalQuestions);
+    }
+
+    const date = new Date().toLocaleDateString('en-US', {
+      day: '2-digit',
+      month: '2-digit',
+      year: 'numeric',
+    });
+    setCurrentDate(date);
+  }, []);
+
+  const handleTakeAnotherTest = () => {
+    sessionStorage.clear();
+  };
+
+  return (
+    <section className="mx-auto max-w-5xl p-6">
+      <h1 className="text-center text-2xl font-bold text-blue-600">
+        Dine resultater
+      </h1>
+
+      <div className="mt-6 w-full overflow-hidden rounded-lg border shadow-md">
+        <Table className="w-full bg-white text-gray-600">
+          <TableHead className="bg-gray-100">
+            <TableRow>
+              <TableCell
+                className="p-4 font-bold"
+                style={{ border: '1px solid #ddd' }}
+              >
+                Dato
+              </TableCell>
+              <TableCell
+                className="p-4 font-bold"
+                style={{ border: '1px solid #ddd' }}
+              >
+                Bruger
+              </TableCell>
+              <TableCell
+                className="p-4 font-bold"
+                style={{ border: '1px solid #ddd' }}
+              >
+                Korrekt
+              </TableCell>
+              <TableCell
+                className="p-4 font-bold"
+                style={{ border: '1px solid #ddd' }}
+              >
+                Ukorrekt
+              </TableCell>
+              <TableCell
+                className="p-4 font-bold"
+                style={{ border: '1px solid #ddd' }}
+              >
+                Resultater
+              </TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            <TableRow>
+              <TableCell className="p-4" style={{ border: '1px solid #ddd' }}>
+                {currentDate}
+              </TableCell>
+              <TableCell className="p-4" style={{ border: '1px solid #ddd' }}>
+                Nav
+              </TableCell>
+              <TableCell className="p-4" style={{ border: '1px solid #ddd' }}>
+                {score}
+              </TableCell>
+              <TableCell className="p-4" style={{ border: '1px solid #ddd' }}>
+                {totalQuestions - score}
+              </TableCell>
+              <TableCell
+                className="p-4 text-blue-500"
+                style={{ border: '1px solid #ddd' }}
+              >
+                ✅ Done
+              </TableCell>
+            </TableRow>
+          </TableBody>
+        </Table>
+      </div>
+
+      <div className="mt-6 rounded-lg bg-gray-100 p-6">
+        <h2 className="text-center text-xl font-bold text-blue-600">
+          Forkerte svar
+        </h2>
+
+        <div className="mt-6 grid grid-cols-1 gap-6 sm:grid-cols-2">
+          {results
+            .filter((result) => !result.isCorrect)
+            .map((result) => (
+              <div key={result.id} className="rounded-lg  p-4">
+                <h3 className="rounded bg-blue-300 p-2 text-center font-semibold">
+                  {result.question}
+                </h3>
+                <div className="mt-2">
+                  <p className="text-red-600">
+                    Dit svar: {result.answers[result.userAnswer]}
                   </p>
-                  <p className="font-semibold text-green-500">
-                    <span>Korrekt svar: </span>C : Germany
+                  <p className="text-green-600">
+                    Korrekt svar: {result.answers[result.correctAnswer]}
                   </p>
                 </div>
-              ))}
-            </div>
-          </div>
-        </>
-      )}
+              </div>
+            ))}
+        </div>
+      </div>
+
+      <div className="mt-8 text-center">
+        <button
+          onClick={handleTakeAnotherTest}
+          className="rounded-md bg-blue-500 px-6 py-2 text-white hover:bg-blue-600"
+        >
+          <Link href="/test">Genstart</Link>
+        </button>
+      </div>
     </section>
   );
 };
 
-export default ResultsPage;
+export default Results;
