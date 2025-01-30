@@ -1,7 +1,7 @@
 'use client';
 
 import Button from '@/components/Button';
-import Explore from '../../components/Explore.jsx';
+import Explore from '../../../components/Explore.jsx';
 import {
   faCircleDollarToSlot,
   faList,

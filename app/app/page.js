@@ -1,4 +1,4 @@
-import WelcomePage from '@/app/start/page';
+import WelcomePage from '@/app/(gated)/start/page';
 
 export default function Home() {
   return <WelcomePage />;
