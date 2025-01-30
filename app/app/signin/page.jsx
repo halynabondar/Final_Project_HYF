@@ -2,17 +2,42 @@
 
 import { signIn } from 'next-auth/react';
 import Button from '@/components/Button';
-import { startTransition } from 'react';
+import { startTransition, useState } from 'react';
 import Link from 'next/link';
 
 export default function SignInPage() {
+  const [error, setError] = useState('');
+
+  const handleSignIn = async (event) => {
+    event.preventDefault();
+
+    const formData = new FormData(event.target);
+    const email = formData.get('email');
+    const password = formData.get('password');
+
+    const response = await fetch('api/auth/signin', {
+      method: 'POST',
+      body: JSON.stringify({ email, password }),
+      headers: { 'Content-Type': 'application/json' },
+    });
+
+    const data = await response.json();
+    if (response.ok) {
+      console.log('Successfully logged in', data);
+    } else {
+      setError('Failed to log in', data.error);
+    }
+  };
+
   return (
     <section>
       <div className="mx-auto max-w-2xl rounded-2xl bg-white p-7 shadow-xl">
         <h1 className="w-full text-center font-poppins text-[36px] font-semibold leading-[67px] xs:text-[40px] xs:leading-[70px]">
           Log ind
         </h1>
+        {error && <p className="text-center text-red-500">{error}</p>}
         <form
+          onSubmit={handleSignIn}
           className="flex flex-col gap-5"
           action={(formData) => {
             startTransition(async () => {
@@ -60,7 +85,7 @@ export default function SignInPage() {
           </div>
           <div className="flex items-center justify-center gap-5">
             <p>Opret ny konto</p>
-            <Link href="/signin" className="text-blue-400">
+            <Link href="/signup" className="text-blue-400">
               Tilmeld dig
             </Link>
           </div>
