@@ -1,6 +1,6 @@
 'use client';
 
-import { signIn } from 'next-auth/react';
+import { signIn } from '@/auth';
 import Button from '@/components/Button';
 import { startTransition } from 'react';
 
