@@ -3,18 +3,53 @@
 import Button from '@/components/Button';
 import { style } from '@/app/style';
 import Link from 'next/link';
+import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 
 export default function SignUpPage() {
-  const handleSubmit = (event) => {
+  const [error, setError] = useState(null);
+  const router = useRouter();
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
-    console.log('Form submitted');
+    const formData = new FormData(event.target);
+    const userData = Object.fromEntries(formData);
+
+    if (userData.password !== userData.repeatPassword) {
+      setError('Passwords do not match');
+      return;
+    }
+
+    try {
+      const response = await fetch('api/auth/signup', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          ...userData,
+          password: userData.password,
+        }),
+      });
+
+      const result = await response.json();
+
+      if (!response.ok) {
+        throw new Error(result.error || 'Failed to sign up');
+      }
+
+      // Redirect user to sign-in page upon successful signup
+      router.push('/signin');
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      setError('Error submitting form: ' + error.message);
+    }
   };
 
   return (
     <section>
       <div className="mx-auto max-w-3xl rounded-2xl bg-white p-7 shadow-xl">
         <h1 className={`${style.heading} text-center`}>Tilmeld dig</h1>
+        {error && <p className="text-red-500">{error}</p>}
         <form className="flex flex-col gap-5" onSubmit={handleSubmit}>
           <div className="mt-5 flex w-full flex-row gap-5">
             <div className="flex grow flex-col gap-1">
@@ -23,7 +58,7 @@ export default function SignUpPage() {
               </label>
               <input
                 className="rounded-xl border p-2 duration-300 hover:border-blue-300"
-                autoComplete="name"
+                autoComplete="given-name"
                 type="text"
                 name="name"
                 id="name"
@@ -37,7 +72,7 @@ export default function SignUpPage() {
               </label>
               <input
                 className="rounded-xl border p-2 duration-300 hover:border-blue-300"
-                autoComplete="name"
+                autoComplete="family-name"
                 type="text"
                 name="surname"
                 id="surname"
