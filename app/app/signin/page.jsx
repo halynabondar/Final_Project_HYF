@@ -3,13 +3,14 @@
 import { signIn } from 'next-auth/react';
 import Button from '@/components/Button';
 import { startTransition } from 'react';
+import Link from 'next/link';
 
 export default function SignInPage() {
   return (
     <section>
       <div className="mx-auto max-w-2xl rounded-2xl bg-white p-7 shadow-xl">
         <h1 className="w-full text-center font-poppins text-[36px] font-semibold leading-[67px] xs:text-[40px] xs:leading-[70px]">
-          Tilmeld dig
+          Log ind
         </h1>
         <form
           className="flex flex-col gap-5"
@@ -55,7 +56,13 @@ export default function SignInPage() {
             </div>
           </div>
           <div className="mt-3 flex justify-center">
-            <Button styles={`mb-3`} type="submit" value="Tilmeld dig" />
+            <Button styles={`mb-3`} type="submit" value="Log ind" />
+          </div>
+          <div className="flex items-center justify-center gap-5">
+            <p>Opret ny konto</p>
+            <Link href="/signin" className="text-blue-400">
+              Tilmeld dig
+            </Link>
           </div>
         </form>
       </div>
