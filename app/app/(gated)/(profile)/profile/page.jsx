@@ -74,7 +74,7 @@ export default function DashboardLayoutBasic() {
   };
 
   return (
-    <AppProvider navigation={NAVIGATION} router={router} theme={demoTheme}>
+    <AppProvider navigation={NAVIGATION} router={router} theme={{}}>
       <DashboardLayout>{renderPageContent()}</DashboardLayout>
     </AppProvider>
   );
