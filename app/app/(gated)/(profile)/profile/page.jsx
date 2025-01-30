@@ -30,7 +30,7 @@ const NAVIGATION = [
 ];
 
 const demoTheme = extendTheme({
-  colorSchemes: { light: true, dark: true },
+  colorSchemes: { light: true },
   colorSchemeSelector: 'class',
   breakpoints: {
     values: {
@@ -74,7 +74,7 @@ export default function DashboardLayoutBasic() {
   };
 
   return (
-    <AppProvider navigation={NAVIGATION} router={router} theme={{}}>
+    <AppProvider navigation={NAVIGATION} router={router} theme={demoTheme}>
       <DashboardLayout>{renderPageContent()}</DashboardLayout>
     </AppProvider>
   );
