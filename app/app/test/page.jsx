@@ -66,13 +66,10 @@ const ExamInstructions = () => {
             />
             <span>
               <h2 className="font-bold">Eksamensoversigt:</h2> Brug
-              eksamensoversigten til at overvåge dit fremskridt. Den giver et
-              klart overblik over besvarede og ubesvarede spørgsmål, så du kan
-              holde dig organiseret under testen. Ved at klikke på et nummer i
-              oversigten vil du blive ført til det spørgsmål.Du skal også klikke
-              på knappen “Indsend svar” på denne side for at afslutte eksamen.
-              Hvis du undlader at gøre det, vil eksamensresultaterne ikke blive
-              registreret.
+              eksamensoversigten til at følge dit fremskridt og holde styr på
+              besvarede og ubesvarede spørgsmål. Klik på et nummer for at gå til
+              et spørgsmål, og husk at klikke på “Indsend svar” for at
+              registrere dine resultater.
             </span>
           </div>
         </div>
