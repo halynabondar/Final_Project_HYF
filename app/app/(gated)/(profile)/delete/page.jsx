@@ -1,7 +1,6 @@
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import Button from '@/components/Button';
 import { useRouter } from 'next/navigation';
-import Link from 'next/link';
 
 export default function DeleteAccount() {
   const router = useRouter();
@@ -54,9 +53,6 @@ export default function DeleteAccount() {
         </div>
         <div className="mt-2 flex gap-5">
           <Button value="Slet konto" onClick={handleDelete} />
-          {/*<Link href="/start">*/}
-          {/*  <Button value="Tilbage til start" />*/}
-          {/*</Link>*/}
         </div>
       </div>
     </div>
