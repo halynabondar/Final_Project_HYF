@@ -8,12 +8,12 @@ export default function SignOutPage() {
         Er du sikker på, at du vil logge ud?
       </h5>
       <form
-        action={async (formData) => {
+        action={async () => {
           'use server';
           await signOut();
         }}
       >
-        <Button type="submit" value="Log ud" />
+        <Button type="submit" aria-label="Log out" value="Log ud" />
       </form>
     </section>
   );
