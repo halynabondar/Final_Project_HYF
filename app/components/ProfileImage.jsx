@@ -28,7 +28,11 @@ export default function ProfileImage({ handleFormStateChange, user }) {
         </div>
       </div>
       <div className="mt-0 xs:mt-4 xs:self-start sm:self-start">
-        <Button value="Redigere" onClick={handleFormStateChange} />
+        <Button
+          value="Redigere"
+          variant="default"
+          onClick={handleFormStateChange}
+        />
       </div>
     </div>
   );
