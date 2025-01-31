@@ -2,15 +2,14 @@ import { auth } from '@/auth';
 import { Pool } from 'pg';
 
 const pool = new Pool({
-  user: 'db_user',
-  host: 'localhost',
-  database: 'db_name',
-  password: 'db_password',
+  user: process.env.PG_USER,
+  host: process.env.PG_HOST,
+  database: process.env.PG_DATABASE,
+  password: process.env.PG_PASSWORD,
   port: 5432,
 });
 
 export async function DELETE() {
-  // No need to pass `req`
   try {
     const session = await auth(); // Get session
     if (!session) {
