@@ -1,7 +1,7 @@
 'use client';
 
 import PropTypes from 'prop-types';
-import { useEffect, useState } from 'react';
+import { useState, useEffect } from 'react';
 
 function formatTime(seconds) {
   const minutes = Math.floor(seconds / 60);
@@ -11,15 +11,19 @@ function formatTime(seconds) {
     .padStart(2, '0')}`;
 }
 
-function CountdownTimer({ duration, onTimeUp }) {
-  const [timeLeft, setTimeLeft] = useState(duration);
+function CountdownTimer({ duration, startTime, onTimeUp }) {
+  const [timeLeft, setTimeLeft] = useState(() => {
+    const elapsed = Math.floor((Date.now() - startTime) / 1000);
+    return Math.max(duration - elapsed, 0);
+  });
 
   useEffect(() => {
+    if (timeLeft <= 0) return;
+
     const timer = setInterval(() => {
       setTimeLeft((prev) => {
         if (prev <= 1) {
           clearInterval(timer);
-          onTimeUp('');
           return 0;
         }
         return prev - 1;
@@ -27,12 +31,19 @@ function CountdownTimer({ duration, onTimeUp }) {
     }, 1000);
 
     return () => clearInterval(timer);
-  }, [onTimeUp]);
+  }, [timeLeft]);
+
+  useEffect(() => {
+    if (timeLeft === 0) {
+      onTimeUp();
+    }
+  }, [timeLeft, onTimeUp]);
 
   return (
-    <div className="flex justify-center">
-      <div className="max-w-xl rounded-xl border-2 bg-indigo-500 px-4 py-2 text-center text-lg font-bold text-white shadow-xl">
-        Tid Tilbage: {formatTime(timeLeft)}
+    <div className="flex justify-center py-2">
+      <div className="w-full max-w-xl rounded-xl  border-2 bg-indigo-500 p-0 px-10 py-2 text-center text-lg font-bold text-white shadow-xl sm:w-full sm:px-4 sm:py-2">
+        <span className="hidden sm:inline">Tid Tilbage:</span>
+        {formatTime(timeLeft)}
       </div>
     </div>
   );
@@ -40,6 +51,7 @@ function CountdownTimer({ duration, onTimeUp }) {
 
 CountdownTimer.propTypes = {
   duration: PropTypes.number.isRequired,
+  startTime: PropTypes.number.isRequired,
   onTimeUp: PropTypes.func.isRequired,
 };
 
