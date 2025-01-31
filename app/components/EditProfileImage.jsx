@@ -51,7 +51,7 @@ export default function EditProfileImage({
 
     const formData = { image: selectedFile };
     try {
-      const response = await fetch(`/api/user/${user.id}`, {
+      const response = await fetch(`/api/private/user/${user.id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

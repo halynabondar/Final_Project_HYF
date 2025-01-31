@@ -93,10 +93,10 @@ export default function StickyHeadTable() {
     if (status === 'loading') return; // Wait until session is resolved
 
     const fetchUserData = async () => {
-      const response = await fetch(`/api/user/${session.user.email}`);
+      const response = await fetch(`/api/private/user/${session.user.email}`);
       if (response.ok) {
         const userData = await response.json();
-        setUserId(userData.id);
+        setUsrId(userData.id);
       }
     };
 

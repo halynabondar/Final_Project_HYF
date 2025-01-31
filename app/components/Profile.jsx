@@ -33,7 +33,7 @@ export default function Profile() {
     const fetchUserData = async () => {
       setIsLoading(true);
       try {
-        const response = await fetch(`/api/user/${session.user.email}`);
+        const response = await fetch(`/api/private/user/${session.user.email}`);
         const data = await response.json();
         setProfileData({
           first_name: data.first_name || '',
@@ -60,7 +60,7 @@ export default function Profile() {
 
   const handleSubmit = async () => {
     try {
-      const response = await fetch(`/api/user/${profileData.id}`, {
+      const response = await fetch(`/api/private/user/${profileData.id}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(profileData),
