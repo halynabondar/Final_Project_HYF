@@ -5,7 +5,11 @@ import Alert from '@mui/material/Alert';
 import AlertTitle from '@mui/material/AlertTitle';
 import PropTypes from 'prop-types';
 
-export default function EditProfileImage({ handleFormStateChange, user }) {
+export default function EditProfileImage({
+  handleFormStateChange,
+  user,
+  setProfileData,
+}) {
   const [selectedFile, setSelectedFile] = useState(null);
   const [preview, setPreview] = useState(user?.image || '/userImage.jpg');
   const [alert, setAlert] = useState({
@@ -57,6 +61,7 @@ export default function EditProfileImage({ handleFormStateChange, user }) {
 
       if (response.ok) {
         showAlert('Image uploaded successfully', 'success');
+        setProfileData({ ...user, image: selectedFile });
       } else {
         showAlert('Failed to upload image', 'error');
       }
