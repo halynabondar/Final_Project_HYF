@@ -40,7 +40,7 @@ export default function DeleteAccount() {
           <br /> dette er permanent og kan ikke fortrydes!
         </p>
         <div className="">
-          <label htmlFor="delete" className="font-bold">
+          <label htmlFor="delete" className="ml-1 font-bold">
             Bekræft dit email
           </label>
           <input
@@ -51,7 +51,7 @@ export default function DeleteAccount() {
             placeholder="Іndtast dit email"
           ></input>
         </div>
-        <div className="mt-2 flex gap-5">
+        <div className="flex gap-5">
           <Button value="Slet konto" variant="delete" onClick={handleDelete} />
         </div>
       </div>
