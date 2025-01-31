@@ -105,13 +105,13 @@ export default function StickyHeadTable() {
           <TableContainer>
             <Table stickyHeader aria-label="sticky table">
               <TableHead>
-                <TableRow>
+                <TableRow className="bg-blue-50 font-bold text-gray-700">
                   {columns.map((column) => (
                     <TableCell
                       key={column.id}
                       align={column.align}
                       style={{ minWidth: column.minWidth }}
-                      className="bg-blue-100 font-bold text-gray-700"
+                      className="bg-blue-50 font-bold text-gray-700"
                     >
                       {column.label}
                     </TableCell>
