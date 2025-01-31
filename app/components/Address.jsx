@@ -62,7 +62,7 @@ export default function Address({ profileData, handleChange, handleSubmit }) {
               <input
                 className="ml-5 rounded-lg border bg-white px-2"
                 value={profileData.town}
-                placeholder="Dit land"
+                placeholder="Din by"
                 name="town"
                 onChange={handleChange}
               />
