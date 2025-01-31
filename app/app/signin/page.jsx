@@ -56,7 +56,7 @@ export default function SignInPage() {
                 type="password"
                 name="password"
                 id="password"
-                autoComplete="new-password"
+                autoComplete="current-password"
                 required
                 placeholder="Indtast mindst 8+ tegn"
               />
