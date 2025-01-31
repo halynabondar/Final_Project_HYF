@@ -22,7 +22,7 @@ export async function POST(req) {
   try {
     const { user_id, userAnswers } = await req.json();
 
-    const finalUserId = user_id || 5; // Using a temporary value for now
+    const finalUserId = user_id;
 
     const questionIds = Object.keys(userAnswers).map(Number);
 
