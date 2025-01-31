@@ -10,7 +10,6 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import Profile from '@/components/Profile';
 import Delete from '@/app/(gated)/(profile)/delete/page';
 import StickyHeadTable from '@/app/(gated)/(profile)/results/page';
-import { SessionProvider } from 'next-auth/react';
 
 const NAVIGATION = [
   {
@@ -76,9 +75,7 @@ export default function DashboardLayoutBasic() {
 
   return (
     <AppProvider navigation={NAVIGATION} router={router} theme={demoTheme}>
-      <SessionProvider>
-        <DashboardLayout>{renderPageContent()}</DashboardLayout>
-      </SessionProvider>
+      <DashboardLayout>{renderPageContent()}</DashboardLayout>
     </AppProvider>
   );
 }
