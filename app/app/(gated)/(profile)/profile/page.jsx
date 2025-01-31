@@ -8,8 +8,9 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
 import DeleteIcon from '@mui/icons-material/Delete';
 import Profile from '@/components/Profile';
-import Delete from '@/app/(profile)/delete/page';
-import StickyHeadTable from '@/app/(profile)/results/page';
+import Delete from '@/app/(gated)/(profile)/delete/page';
+import StickyHeadTable from '@/app/(gated)/(profile)/results/page';
+import { SessionProvider } from 'next-auth/react';
 
 const NAVIGATION = [
   {
@@ -30,7 +31,7 @@ const NAVIGATION = [
 ];
 
 const demoTheme = extendTheme({
-  colorSchemes: { light: true, dark: true },
+  colorSchemes: { light: true },
   colorSchemeSelector: 'class',
   breakpoints: {
     values: {
@@ -75,7 +76,9 @@ export default function DashboardLayoutBasic() {
 
   return (
     <AppProvider navigation={NAVIGATION} router={router} theme={demoTheme}>
-      <DashboardLayout>{renderPageContent()}</DashboardLayout>
+      <SessionProvider>
+        <DashboardLayout>{renderPageContent()}</DashboardLayout>
+      </SessionProvider>
     </AppProvider>
   );
 }

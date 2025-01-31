@@ -7,7 +7,7 @@ export async function GET(req, { params }) {
 
   try {
     // Fetch the user with the given id
-    const user = await knex('users').where({ id }).first();
+    const user = await knex('users').where({ email: id }).first();
 
     if (!user) {
       return NextResponse.json({ error: 'User not found' }, { status: 404 });

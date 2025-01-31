@@ -3,9 +3,10 @@ import Address from '@/components/Address';
 import { useState, useEffect } from 'react';
 import ProfileImageWrapper from '@/components/ProfileImageWrapper';
 import AutorenewIcon from '@mui/icons-material/Autorenew';
-import PropTypes from 'prop-types';
+import { useSession } from 'next-auth/react';
 
-export default function Profile({ userID = 5 }) {
+export default function Profile() {
+  const { data: session, status } = useSession();
   const [isLoading, setIsLoading] = useState(true);
   const [profileData, setProfileData] = useState({
     first_name: '',
@@ -29,10 +30,10 @@ export default function Profile({ userID = 5 }) {
 
   // Fetch user data
   useEffect(() => {
-    const fetchUserData = async (userID) => {
+    const fetchUserData = async () => {
       setIsLoading(true);
       try {
-        const response = await fetch(`/api/user/${userID}`);
+        const response = await fetch(`/api/user/${session.user.email}`);
         const data = await response.json();
         setProfileData({
           first_name: data.first_name || '',
@@ -52,10 +53,10 @@ export default function Profile({ userID = 5 }) {
       }
     };
 
-    if (!profileData.id) {
-      fetchUserData(userID);
+    if (!profileData.id && status !== 'loading') {
+      fetchUserData();
     }
-  });
+  }, [profileData.id, session, status]);
 
   const handleSubmit = async () => {
     try {
@@ -86,7 +87,10 @@ export default function Profile({ userID = 5 }) {
 
   return (
     <div className="flex flex-col gap-7 p-6">
-      <ProfileImageWrapper user={profileData}></ProfileImageWrapper>
+      <ProfileImageWrapper
+        user={profileData}
+        setProfileData={setProfileData}
+      ></ProfileImageWrapper>
       <PersonalInfo
         profileData={profileData}
         handleChange={handleChange}
@@ -100,7 +104,3 @@ export default function Profile({ userID = 5 }) {
     </div>
   );
 }
-
-Profile.propTypes = {
-  userID: PropTypes.string.isRequired, // Assuming userID is a required string
-};

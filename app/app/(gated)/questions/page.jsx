@@ -1,10 +1,10 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import QuestionCard from '../../components/Questioncard';
-import PreviousNext from '../../components/Prevnext';
-import Button from '../../components/Button';
-import CountdownTimer from '../../components/Countdowntimer';
+import QuestionCard from '../../../components/Questioncard';
+import PreviousNext from '../../../components/Prevnext';
+import Button from '../../../components/Button';
+import CountdownTimer from '../../../components/Countdowntimer';
 import AutorenewIcon from '@mui/icons-material/Autorenew';
 /* import Overview from '../../components/Overview'; -- to be used to connect to overview page*/
 
