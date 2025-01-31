@@ -3,7 +3,7 @@
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import Button from '@/components/Button';
 import { useRouter } from 'next/navigation';
-import { useSession } from 'next-auth/react';
+import { useSession, signOut } from 'next-auth/react';
 import { useEffect, useState } from 'react';
 import AutorenewIcon from '@mui/icons-material/Autorenew';
 
@@ -47,8 +47,8 @@ export default function DeleteAccount() {
 
       if (response.ok) {
         setTimeout(() => {
-          alert(data.message);
-          router.push('/signin');
+          // make sure the session indeed terminated, also force a redirection
+          signOut();
         }, 3000);
       }
 
