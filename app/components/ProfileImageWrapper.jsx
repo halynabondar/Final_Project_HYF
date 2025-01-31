@@ -3,7 +3,7 @@ import ProfileImage from '@/components/ProfileImage';
 import EditProfileImage from '@/components/EditProfileImage';
 import PropTypes from 'prop-types';
 
-export default function ProfileImageWrapper({ user }) {
+export default function ProfileImageWrapper({ user, setProfileData }) {
   const [formMode, setFormMode] = useState('show');
 
   const handleFormStateChange = () => {
@@ -24,6 +24,7 @@ export default function ProfileImageWrapper({ user }) {
         <EditProfileImage
           handleFormStateChange={handleFormStateChange}
           user={user}
+          setProfileData={setProfileData}
         />
       )}
     </>
@@ -35,4 +36,5 @@ ProfileImageWrapper.propTypes = {
     image: PropTypes.string.isRequired, // Validate that `image` is a required string
     name: PropTypes.string.isRequired, // Validate that `name` is a required string
   }).isRequired, // Ensure `user` is a required object
+  setProfileData: PropTypes.func.isRequired,
 };

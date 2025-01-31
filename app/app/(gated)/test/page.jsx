@@ -8,7 +8,7 @@ import {
   faForward,
   faListCheck,
 } from '@fortawesome/free-solid-svg-icons';
-import Button from '../../components/Button';
+import Button from '../../../components/Button';
 
 const ExamInstructions = () => {
   return (

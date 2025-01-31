@@ -20,9 +20,11 @@ export default function ProfileImage({ handleFormStateChange, user }) {
         </div>
         <div>
           <h3 className="text-xl font-bold text-blue-500">
-            Ms. Kroger Rutherford
+            {user.first_name} {user.last_name}
           </h3>
-          <p className="text-gray-700">Denmark, Copenhagen</p>
+          <p className="text-gray-700">
+            {user.country}, {user.town}
+          </p>
         </div>
       </div>
       <div className="mt-0 xs:mt-4 xs:self-start sm:self-start">
@@ -36,5 +38,9 @@ ProfileImage.propTypes = {
   handleFormStateChange: PropTypes.func.isRequired,
   user: PropTypes.shape({
     image: PropTypes.string,
-  }).isRequired,
+    first_name: PropTypes.string.isRequired, // Add first_name
+    last_name: PropTypes.string.isRequired, // Add last_name
+    country: PropTypes.string, // Add country (not required)
+    town: PropTypes.string, // Add town (not required)
+  }).isRequired, // `user` is required
 };

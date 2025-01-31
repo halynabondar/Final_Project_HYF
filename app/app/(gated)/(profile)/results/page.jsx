@@ -104,14 +104,14 @@ export default function StickyHeadTable() {
         <>
           <TableContainer>
             <Table stickyHeader aria-label="sticky table">
-              <TableHead>
-                <TableRow>
+              <TableHead className="bg-blue-50 font-bold text-gray-700">
+                <TableRow className="bg-blue-50 font-bold text-gray-700">
                   {columns.map((column) => (
                     <TableCell
                       key={column.id}
                       align={column.align}
                       style={{ minWidth: column.minWidth }}
-                      className="bg-blue-100 font-bold text-gray-700"
+                      className="bg-blue-50 font-bold text-gray-700"
                     >
                       {column.label}
                     </TableCell>
@@ -124,7 +124,7 @@ export default function StickyHeadTable() {
                     <TableCell
                       colSpan={columns.length}
                       align="center"
-                      className="text-lg text-gray-600"
+                      className="text-lg text-gray-700"
                     >
                       No results found.
                     </TableCell>
@@ -134,6 +134,7 @@ export default function StickyHeadTable() {
                   .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                   .map((row) => (
                     <TableRow
+                      className="text-gray-700"
                       hover
                       role="checkbox"
                       tabIndex={-1}
@@ -142,7 +143,11 @@ export default function StickyHeadTable() {
                       {columns.map((column) => {
                         const value = row[column.id];
                         return (
-                          <TableCell key={column.id} align={column.align}>
+                          <TableCell
+                            className="text-gray-700"
+                            key={column.id}
+                            align={column.align}
+                          >
                             {column.format && typeof value === 'number'
                               ? column.format(value)
                               : value}
