@@ -2,7 +2,7 @@
 
 import PropTypes from 'prop-types';
 import { useState, useEffect } from 'react';
-import handleSubmit from '../../components/Handlesubmit';
+import handleSubmit from '@/components/Handlesubmit';
 
 const Overview = ({ questions, userAnswers, onQuestionClick, timeExpired }) => {
   const [isSubmitting, setIsSubmitting] = useState(false);

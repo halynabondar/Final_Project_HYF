@@ -1,13 +1,13 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import QuestionCard from '../../../components/Questioncard';
-import PreviousNext from '../../../components/Prevnext';
-import Button from '../../../components/Button';
-import CountdownTimer from '../../../components/Countdowntimer';
+import QuestionCard from '@/components/Questioncard';
+import PreviousNext from '@/components/Prevnext';
+import Button from '@/components/Button';
+import CountdownTimer from '@/components/Countdowntimer';
 import AutorenewIcon from '@mui/icons-material/Autorenew';
 import Overview from '../overview/page';
-import handleSubmit from '../../components/Handlesubmit';
+import handleSubmit from '@/components/Handlesubmit';
 
 const apiUrl = '/api/questions';
 
