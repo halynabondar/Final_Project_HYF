@@ -94,10 +94,14 @@ const Results = () => {
                 {totalQuestions - score}
               </TableCell>
               <TableCell
-                className="p-4 text-blue-500"
+                className="p-4 font-bold"
                 style={{ border: '1px solid #ddd' }}
               >
-                ✅ Done
+                {score >= 39 ? (
+                  <span className="text-green-600">✅ Bestået</span>
+                ) : (
+                  <span className="text-red-600">❌ Ikke bestået</span>
+                )}
               </TableCell>
             </TableRow>
           </TableBody>
