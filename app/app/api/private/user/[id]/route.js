@@ -43,23 +43,3 @@ export async function PUT(req, { params }) {
     );
   }
 }
-
-// POST endpoint: Update image
-export async function POST(req, { params }) {
-  const { id } = await params;
-
-  try {
-    const formData = await req.formData();
-    const file = formData.get('image');
-
-    console.log(`Received file for user ID: ${id}`, file);
-
-    return NextResponse.json({ message: 'File uploaded successfully' });
-  } catch (error) {
-    console.error('Error uploading file:', error.message);
-    return NextResponse.json(
-      { error: 'Error uploading file' },
-      { status: 500 },
-    );
-  }
-}
