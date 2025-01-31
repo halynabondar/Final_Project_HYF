@@ -3,9 +3,35 @@
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import Button from '@/components/Button';
 import { useRouter } from 'next/navigation';
+import { useSession } from 'next-auth/react';
+import { useEffect, useState } from 'react';
+import AutorenewIcon from '@mui/icons-material/Autorenew';
 
 export default function DeleteAccount() {
   const router = useRouter();
+  const [userId, setUserId] = useState(null);
+  const [message, setMessage] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const { data: session, status } = useSession();
+
+  useEffect(() => {
+    const fetchUserData = async () => {
+      setIsLoading(true);
+      try {
+        const response = await fetch(`/api/private/user/${session.user.email}`);
+        const data = await response.json();
+        setUserId(data.email);
+      } catch (error) {
+        console.error('Failed to fetch data:', error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    if (status === 'loading') return;
+
+    fetchUserData();
+  }, [status]);
 
   const handleDelete = async () => {
     const confirmed = window.confirm(
@@ -14,19 +40,32 @@ export default function DeleteAccount() {
     if (!confirmed) return;
 
     try {
-      const response = await fetch('/api/delete', { method: 'DELETE' });
+      const response = await fetch(`/api/private/user/${userId}`, {
+        method: 'DELETE',
+      });
       const data = await response.json();
 
       if (response.ok) {
-        alert(data.message);
-        router.push('/start');
-      } else {
-        alert(data.message);
+        setTimeout(() => {
+          alert(data.message);
+          router.push('/signin');
+        }, 3000);
       }
+
+      setMessage(data?.message);
     } catch (error) {
       console.error('Error deleting account:', error);
     }
   };
+
+  if (isLoading) {
+    return (
+      <div className="flex items-center justify-center p-5 text-lg">
+        <AutorenewIcon className="mr-2" />
+        Loading...
+      </div>
+    );
+  }
 
   return (
     <div className="mt-5 flex items-center justify-center">
