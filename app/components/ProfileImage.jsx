@@ -23,7 +23,7 @@ export default function ProfileImage({ handleFormStateChange, user }) {
             {user.first_name} {user.last_name}
           </h3>
           <p className="text-gray-700">
-            {user.country} {user.town}
+            {user.country}, {user.town}
           </p>
         </div>
       </div>
