@@ -104,7 +104,7 @@ export default function StickyHeadTable() {
         <>
           <TableContainer>
             <Table stickyHeader aria-label="sticky table">
-              <TableHead>
+              <TableHead className="bg-blue-50 font-bold text-gray-700">
                 <TableRow className="bg-blue-50 font-bold text-gray-700">
                   {columns.map((column) => (
                     <TableCell
