@@ -31,6 +31,7 @@ export default function PersonalInfo({
         </h3>
         <Button
           value={formMode === 'edit' ? 'Gem' : 'Redigere'}
+          variant="default"
           onClick={formSubmitHandler}
         />
       </div>
