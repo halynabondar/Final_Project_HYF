@@ -14,13 +14,22 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import { AccountCircle } from '@mui/icons-material';
 import Link from 'next/link';
+import { useSession } from 'next-auth/react';
+import { useEffect } from 'react';
 
 const pages = ['Start', 'Om Os', 'Test'];
-const settings = [
+const userSettings = [
   {
     title: 'Min Profil',
     path: '/profile',
   },
+  {
+    title: 'Log und',
+    path: '/signout',
+  },
+];
+
+const visitorSettings = [
   {
     title: 'Log ind',
     path: '/signin',
@@ -30,6 +39,16 @@ const settings = [
 function ResponsiveAppBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+  const [settings, setSettings] = React.useState(visitorSettings);
+  const { data: session, status } = useSession();
+
+  useEffect(() => {
+    if (status === 'loading') return;
+
+    if (session?.user) {
+      setSettings(userSettings);
+    }
+  }, [status]);
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
