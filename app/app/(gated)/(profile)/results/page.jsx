@@ -13,6 +13,7 @@ import DoneIcon from '@mui/icons-material/Done';
 import CloseIcon from '@mui/icons-material/Close';
 import AutorenewIcon from '@mui/icons-material/Autorenew';
 import { useState, useEffect } from 'react';
+import { useSession } from 'next-auth/react';
 
 const columns = [
   { id: 'dato', label: 'Dato', minWidth: 100, align: 'center' },
@@ -41,21 +42,26 @@ export default function StickyHeadTable() {
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
   const [rows, setRows] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [userId, setUserId] = useState(null);
 
-  // Fetch data from the database
+  const { data: session, status } = useSession();
+
   useEffect(() => {
     const fetchData = async () => {
       try {
         setLoading(true);
-        const response = await fetch('/api/results');
+
+        const response = await fetch(`/api/results?userId=${userId}`);
 
         if (!response.ok) {
-          throw new Error('Failed to fetch results');
+          const errorText = await response.text();
+          console.error('API Error Response:', errorText);
+          throw new Error(`Failed to fetch results: ${errorText}`);
         }
 
         const data = await response.json();
+        console.log('Received data:', data);
 
-        // Map data to table rows format
         const formattedRows = data.map((item) => ({
           dato: new Intl.DateTimeFormat('en-GB', {
             day: '2-digit',
@@ -65,7 +71,7 @@ export default function StickyHeadTable() {
           korrekt: item.score,
           ukorrekt: item.wrong_answers,
           resultater:
-            item.score > 36 ? (
+            item.score > 35 ? (
               <DoneIcon className="text-green-600" />
             ) : (
               <CloseIcon className="text-red-600" />
@@ -75,14 +81,27 @@ export default function StickyHeadTable() {
         setRows(formattedRows);
       } catch (error) {
         console.error('Error fetching data:', error);
-        alert('Failed to load results. Please try again later.');
       } finally {
         setLoading(false);
       }
     };
 
     fetchData();
-  }, []);
+  }, [userId]);
+  // Fetch data from the database
+  useEffect(() => {
+    if (status === 'loading') return; // Wait until session is resolved
+
+    const fetchUserData = async () => {
+      const response = await fetch(`/api/user/${session.user.email}`);
+      if (response.ok) {
+        const userData = await response.json();
+        setUserId(userData.id);
+      }
+    };
+
+    fetchUserData();
+  }, [status]);
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -160,7 +179,7 @@ export default function StickyHeadTable() {
             </Table>
           </TableContainer>
           <TablePagination
-            rowsPerPageOptions={[10, 25, 100]}
+            rowsPerPageOptions={[5, 10, 25, 100]}
             component="div"
             count={rows.length}
             rowsPerPage={rowsPerPage}
