@@ -144,4 +144,5 @@ EditProfileImage.propTypes = {
     image: PropTypes.string, // `image` can be null or undefined
     id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired, // `id` must be string or number
   }).isRequired, // Entire `user` object is required
+  setProfileData: PropTypes.func.isRequired,
 };
