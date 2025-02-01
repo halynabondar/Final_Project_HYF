@@ -70,7 +70,7 @@ export default function DeleteAccount() {
     <div className="mt-5 flex items-center justify-center">
       <div className="flex flex-col items-center justify-center gap-5 rounded-xl bg-blue-50 p-5 shadow-xl">
         <div className="flex size-14 items-center justify-center rounded-full bg-blue-100">
-          <DeleteForeverIcon className="text-3xl text-red-500" />
+          <DeleteForeverIcon className="text-4xl text-red-500" />
         </div>
         <h1 className="my-1 text-3xl font-bold">Slet konto</h1>
         <p className="text-center text-lg text-red-700">
