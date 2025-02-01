@@ -24,14 +24,14 @@ const userSettings = [
     path: '/profile',
   },
   {
-    title: 'Log und',
+    title: 'Logge ud',
     path: '/signout',
   },
 ];
 
 const visitorSettings = [
   {
-    title: 'Log ind',
+    title: 'Logge ind',
     path: '/signin',
   },
 ];
@@ -48,7 +48,7 @@ function ResponsiveAppBar() {
     if (session?.user) {
       setSettings(userSettings);
     }
-  }, [status]);
+  }, [session?.user, status]);
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);

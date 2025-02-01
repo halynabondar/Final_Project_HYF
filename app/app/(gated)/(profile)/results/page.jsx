@@ -51,7 +51,7 @@ export default function StickyHeadTable() {
       try {
         setLoading(true);
 
-        const response = await fetch(`/api/results?userId=${userId}`);
+        const response = await fetch(`/api/private/results?userId=${userId}`);
 
         if (!response.ok) {
           const errorText = await response.text();
@@ -86,7 +86,9 @@ export default function StickyHeadTable() {
       }
     };
 
-    fetchData();
+    if (userId) {
+      fetchData();
+    }
   }, [userId]);
   // Fetch data from the database
   useEffect(() => {
@@ -96,12 +98,12 @@ export default function StickyHeadTable() {
       const response = await fetch(`/api/private/user/${session.user.email}`);
       if (response.ok) {
         const userData = await response.json();
-        setUsrId(userData.id);
+        setUserId(userData.id);
       }
     };
 
     fetchUserData();
-  }, [status]);
+  }, [session.user.email, status]);
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);

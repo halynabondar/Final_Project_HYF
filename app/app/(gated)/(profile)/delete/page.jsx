@@ -2,13 +2,11 @@
 
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import Button from '@/components/Button';
-import { useRouter } from 'next/navigation';
 import { useSession, signOut } from 'next-auth/react';
 import { useEffect, useState } from 'react';
 import AutorenewIcon from '@mui/icons-material/Autorenew';
 
 export default function DeleteAccount() {
-  const router = useRouter();
   const [userId, setUserId] = useState(null);
   const [message, setMessage] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -31,7 +29,7 @@ export default function DeleteAccount() {
     if (status === 'loading') return;
 
     fetchUserData();
-  }, [status]);
+  }, [session.user.email, status]);
 
   const handleDelete = async () => {
     const confirmed = window.confirm(
