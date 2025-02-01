@@ -44,10 +44,7 @@ function ResponsiveAppBar() {
   const { data: session, status } = useSession();
 
   const fetchUserIcon = async () => {
-    const response = await fetch(`/api/private/user/${session.user.email}`, {
-      method: 'GET',
-      credentials: 'include', // Ensures cookies are sent
-    });
+    const response = await fetch(`/api/private/user/${session.user.email}`);
     if (response.ok) {
       const data = await response.json();
       setUserIcon(data.image);

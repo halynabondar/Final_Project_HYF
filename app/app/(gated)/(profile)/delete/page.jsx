@@ -16,13 +16,7 @@ export default function DeleteAccount() {
     const fetchUserData = async () => {
       setIsLoading(true);
       try {
-        const response = await fetch(
-          `/api/private/user/${session.user.email}`,
-          {
-            method: 'GET',
-            credentials: 'include', // Ensures cookies are sent
-          },
-        );
+        const response = await fetch(`/api/private/user/${session.user.email}`);
         const data = await response.json();
         setUserId(data.email);
       } catch (error) {
@@ -46,7 +40,6 @@ export default function DeleteAccount() {
     try {
       const response = await fetch(`/api/private/user/${userId}`, {
         method: 'DELETE',
-        credentials: 'include',
       });
       const data = await response.json();
 
