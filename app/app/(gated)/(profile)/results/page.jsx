@@ -51,7 +51,10 @@ export default function StickyHeadTable() {
       try {
         setLoading(true);
 
-        const response = await fetch(`/api/private/results?userId=${userId}`);
+        const response = await fetch(`/api/private/results?userId=${userId}`, {
+          method: 'GET',
+          credentials: 'include', // Ensures cookies are sent
+        });
 
         if (!response.ok) {
           const errorText = await response.text();
@@ -95,7 +98,10 @@ export default function StickyHeadTable() {
     if (status === 'loading') return; // Wait until session is resolved
 
     const fetchUserData = async () => {
-      const response = await fetch(`/api/private/user/${session.user.email}`);
+      const response = await fetch(`/api/private/user/${session.user.email}`, {
+        method: 'GET',
+        credentials: 'include', // Ensures cookies are sent
+      });
       if (response.ok) {
         const userData = await response.json();
         setUserId(userData.id);
