@@ -51,6 +51,7 @@ export default function DeleteAccount() {
       }
 
       setMessage(data?.message);
+      alert(message); // TODO: add a snackbar instead
     } catch (error) {
       console.error('Error deleting account:', error);
     }
