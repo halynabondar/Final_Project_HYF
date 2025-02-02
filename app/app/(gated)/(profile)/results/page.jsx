@@ -73,7 +73,7 @@ export default function StickyHeadTable() {
           resultater:
             item.score > 38 ? (
               <DoneIcon className="text-green-600" />
-            ) : (git
+            ) : (
               <CloseIcon className="text-red-600" />
             ),
         }));
