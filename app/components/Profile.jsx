@@ -33,7 +33,9 @@ export default function Profile() {
     const fetchUserData = async () => {
       setIsLoading(true);
       try {
-        const response = await fetch(`/api/private/user/${session.user.email}`);
+        const response = await fetch(
+          `/api/private/user/${session?.user.email}`,
+        );
         const data = await response.json();
         setProfileData({
           first_name: data.first_name || '',

@@ -12,8 +12,8 @@ import Button from '../../../components/Button';
 
 const ExamInstructions = () => {
   return (
-    <section className="flex min-h-screen flex-col items-center justify-center p-4">
-      <div className="flex w-full max-w-4xl flex-col items-center justify-center rounded-lg p-8">
+    <section className="flex min-h-screen flex-col items-center justify-center">
+      <div className="flex w-full max-w-4xl flex-col items-center justify-center rounded-lg">
         <div className="mb-6 flex w-full justify-center">
           <img
             src="/istructionImage.jpg"
@@ -26,6 +26,7 @@ const ExamInstructions = () => {
 
         <h1 className="mb-6 text-center text-3xl font-bold text-blue-600">
           Velkommen til Testen.
+
         </h1>
 
         <div className="mb-6 grid grid-cols-1 gap-6 text-lg text-gray-700 md:grid-cols-2">
