@@ -143,25 +143,28 @@ function ResponsiveAppBar() {
               ))}
             </Menu>
           </Box>
-          <Link href="/start" passHref>
-            <Typography
-              variant="h5"
-              noWrap
-              sx={{
-                mr: 2,
-                display: { xs: 'flex', md: 'none' },
-                flexGrow: 1,
-                fontFamily: 'monospace',
-                fontWeight: 700,
-                color: 'inherit',
-                textDecoration: 'none',
-              }}
-            >
-              DKTestPrep
-            </Typography>
-          </Link>
+          <div className="flex w-full justify-center">
+            <Link href="/start" passHref>
+              <Typography
+                variant="h5"
+                noWrap
+                sx={{
+                  mr: 2,
+                  display: { xs: 'flex', md: 'none' },
+                  flexGrow: 1,
+                  fontFamily: 'monospace',
+                  fontWeight: 700,
+                  color: 'inherit',
+                  textDecoration: 'none',
+                }}
+              >
+                DKTestPrep
+              </Typography>
+            </Link>
+          </div>
           <Box
             sx={{
+              textWrap: 'nowrap',
               flexGrow: 1,
               display: { xs: 'none', md: 'flex', justifyContent: 'flex-end' },
               mr: 5,
@@ -201,8 +204,8 @@ function ResponsiveAppBar() {
                   sx={{
                     background: 'white',
                     borderRadius: '50%',
-                    width: '30px',
-                    height: '30px',
+                    width: '40px',
+                    height: '40px',
                     color: '#3B81F6',
                   }}
                 />

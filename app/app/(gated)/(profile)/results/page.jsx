@@ -39,7 +39,7 @@ const columns = [
 
 export default function StickyHeadTable() {
   const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(10);
+  const [rowsPerPage, setRowsPerPage] = React.useState(8);
   const [rows, setRows] = useState([]);
   const [loading, setLoading] = useState(true);
   const [userId, setUserId] = useState(null);
@@ -159,7 +159,7 @@ export default function StickyHeadTable() {
                       hover
                       role="checkbox"
                       tabIndex={-1}
-                      key={row.dato}
+                      key={row.id}
                     >
                       {columns.map((column) => {
                         const value = row[column.id];
@@ -181,7 +181,7 @@ export default function StickyHeadTable() {
             </Table>
           </TableContainer>
           <TablePagination
-            rowsPerPageOptions={[5, 10, 25, 100]}
+            rowsPerPageOptions={[4, 8]}
             component="div"
             count={rows.length}
             rowsPerPage={rowsPerPage}
