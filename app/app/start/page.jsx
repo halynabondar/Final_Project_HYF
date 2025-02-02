@@ -10,8 +10,22 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Link from 'next/link';
 import Image from 'next/image';
+import * as React from 'react';
+import { useSession } from 'next-auth/react';
+import { useEffect } from 'react';
 
 function WelcomePage() {
+  const [showLogIn, setShowLogIn] = React.useState(true);
+  const { data: session, status } = useSession();
+
+  useEffect(() => {
+    if (status === 'loading') return;
+
+    if (session?.user) {
+      setShowLogIn(false);
+    }
+  }, [session?.user, status]);
+
   const exploreFeatures = [
     {
       id: 1,
@@ -44,9 +58,12 @@ function WelcomePage() {
             engagerende fællesskabsblog vil du få den viden og selvtillid, der
             er nødvendig for at bestå prøven.
           </p>
-          <Link href="/signin">
-            <Button value="Log ind" variant="default" styles={`mt-5`} />
-          </Link>
+
+          {showLogIn && (
+            <Link href="/signin">
+              <Button value="Log ind" variant="default" styles={`mt-5`} />
+            </Link>
+          )}
         </div>
         <div className="flex max-w-[600px] flex-col items-center justify-center rounded-2xl">
           <Image
