@@ -1,7 +1,7 @@
 'use client';
 
 import Button from '@/components/Button';
-import Explore from '../../../components/Explore.jsx';
+import Explore from '../../components/Explore.jsx';
 import {
   faCircleDollarToSlot,
   faList,
@@ -45,7 +45,7 @@ function WelcomePage() {
             er nødvendig for at bestå prøven.
           </p>
           <Link href="/signin">
-            <Button value="Log ind" styles={`mt-5`} />
+            <Button value="Log ind" variant="default" styles={`mt-5`} />
           </Link>
         </div>
         <div className="flex max-w-[600px] flex-col items-center justify-center rounded-2xl">
