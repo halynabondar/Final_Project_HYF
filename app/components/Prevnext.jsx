@@ -16,7 +16,7 @@ function PreviousNext({ showPrevious, showNext, onPrevious, onNext }) {
 
       {showNext ? (
         <Button
-          styles=" pl-10 pr-100 px-6 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-700"
+          styles=" pl-7 pr-100 px-6 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-700"
           value="Næste"
           onClick={onNext}
         />
