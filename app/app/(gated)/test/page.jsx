@@ -25,7 +25,7 @@ const ExamInstructions = () => {
         </div>
 
         <h1 className="mb-6 text-center text-3xl font-bold text-blue-600">
-          Velkommen til eksamen
+          Velkommen til Testen.
         </h1>
 
         <div className="mb-6 grid grid-cols-1 gap-6 text-lg text-gray-700 md:grid-cols-2">
@@ -76,7 +76,7 @@ const ExamInstructions = () => {
 
         <Link href="/questions">
           <Button
-            value="Start Eksamen"
+            value="Start"
             className="mt-10 rounded-lg bg-blue-600 px-6 py-3 text-white hover:bg-blue-700"
           />
         </Link>

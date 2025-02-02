@@ -4,16 +4,20 @@ import { auth } from '@/auth';
 
 
 export async function GET() {
+
   try {
     const session = await auth()
     if (!session) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+
     }
+
+    
 
     const questions = await knex('questions')
       .select('id', 'question', 'answers')
       .orderByRaw('RANDOM()')
-      .limit(40);
+      .limit(45);
 
     return NextResponse.json(questions);
   } catch (error) {
@@ -27,7 +31,7 @@ export async function GET() {
 
 export async function POST(req) {
   try {
-    const session = await getServerSession({ req, ...authOptions });
+    const session = await auth()
 
     if (!session) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
@@ -35,6 +39,7 @@ export async function POST(req) {
 
     const { userAnswers } = await req.json();
     const finalUserId = session.user.id;
+    console.log(finalUserId)
 
     const questionIds = Object.keys(userAnswers).map(Number);
 
@@ -69,3 +74,4 @@ export async function POST(req) {
     );
   }
 }
+

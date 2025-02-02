@@ -46,11 +46,10 @@ const Overview = ({ questions, userAnswers, onQuestionClick, timeExpired }) => {
             {questions.map((_, index) => (
               <button
                 key={index}
-                className={`flex size-10 items-center justify-center rounded-md border text-sm font-medium ${
-                  userAnswers[index]
+                className={`flex size-10 items-center justify-center rounded-md border text-sm font-medium ${userAnswers[index]
                     ? 'bg-gray-400 text-white'
                     : 'border-gray-300 bg-white text-black hover:bg-gray-200'
-                }`}
+                  }`}
                 onClick={() => onQuestionClick(index)}
               >
                 {index + 1}
