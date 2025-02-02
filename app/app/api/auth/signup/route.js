@@ -5,11 +5,6 @@ import { auth } from '@/auth';
 
 export async function POST(req) {
   try {
-    const session = await auth();
-
-    if (!session) {
-      return NextResponse.json({ error: 'User not found' }, { status: 404 });
-    }
     const {
       first_name,
       last_name,
