@@ -7,13 +7,14 @@ import TableBody from '@mui/material/TableBody';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import TableCell from '@mui/material/TableCell';
+import AutorenewIcon from '@mui/icons-material/Autorenew';
 
 const Results = () => {
   const [score, setScore] = useState(null);
   const [results, setResults] = useState([]);
   const [totalQuestions, setTotalQuestions] = useState(null);
   const [currentDate, setCurrentDate] = useState(null);
-
+  const [loading, setLoading] = useState(true);
   useEffect(() => {
     const score = sessionStorage.getItem('score');
     const results = sessionStorage.getItem('results');
@@ -31,11 +32,23 @@ const Results = () => {
       year: 'numeric',
     });
     setCurrentDate(date);
+
+
+    setLoading(false);
   }, []);
 
   const handleTakeAnotherTest = () => {
     sessionStorage.clear();
   };
+
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center min-h-screen">
+        <AutorenewIcon className="animate-spin text-blue-500" style={{ fontSize: 40 }} />
+        <p className="ml-4 text-xl">Loading...</p>
+      </div>
+    );
+  }
 
   return (
     <section className="mx-auto max-w-5xl p-6">
