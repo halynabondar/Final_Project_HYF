@@ -98,9 +98,6 @@ const Results = () => {
                 {currentDate}
               </TableCell>
               <TableCell className="p-4" style={{ border: '1px solid #ddd' }}>
-                Nav
-              </TableCell>
-              <TableCell className="p-4" style={{ border: '1px solid #ddd' }}>
                 {score}
               </TableCell>
               <TableCell className="p-4" style={{ border: '1px solid #ddd' }}>
