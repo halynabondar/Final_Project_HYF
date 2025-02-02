@@ -10,14 +10,15 @@ export default async function handleSubmit(
       userAnswersById[question.id] = userAnswers[index];
     });
 
-    console.log('Submitting data:', { user_id, userAnswersById });
+
+    console.log('Submitting data:', { userAnswersById });
 
     const response = await fetch('/api/questions', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ user_id, userAnswers: userAnswersById }),
+      body: JSON.stringify({ userAnswers: userAnswersById }),
     });
 
     if (!response.ok) {
