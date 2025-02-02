@@ -66,12 +66,7 @@ const Results = () => {
               >
                 Dato
               </TableCell>
-              <TableCell
-                className="p-4 font-bold"
-                style={{ border: '1px solid #ddd' }}
-              >
-                Bruger
-              </TableCell>
+
               <TableCell
                 className="p-4 font-bold"
                 style={{ border: '1px solid #ddd' }}
