@@ -132,7 +132,7 @@ export default function StickyHeadTable() {
                       key={column.id}
                       align={column.align}
                       style={{ minWidth: column.minWidth }}
-                      className={`bg-blue-${50} font-bold text-gray-700`}
+                      className="bg-blue-50 font-bold text-gray-700"
                     >
                       {column.label}
                     </TableCell>
