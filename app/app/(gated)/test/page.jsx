@@ -24,8 +24,9 @@ const ExamInstructions = () => {
           />
         </div>
 
-        <h1 className="mb-5 mt-2 text-center text-3xl font-bold text-blue-600">
-          Velkommen til eksamen
+        <h1 className="mb-6 text-center text-3xl font-bold text-blue-600">
+          Velkommen til Testen.
+
         </h1>
 
         <div className="mb-6 grid grid-cols-1 gap-6 text-lg text-gray-700 md:grid-cols-2">
@@ -66,17 +67,17 @@ const ExamInstructions = () => {
             />
             <span>
               <h2 className="font-bold">Eksamensoversigt:</h2> Brug
-              eksamensoversigten til at overvåge dit fremskridt. Den giver et
-              klart overblik over besvarede og ubesvarede spørgsmål, så du kan
-              holde dig organiseret under testen. Ved at klikke på et nummer i
-              oversigten vil du blive ført til det spørgsmål.
+              eksamensoversigten til at følge dit fremskridt og holde styr på
+              besvarede og ubesvarede spørgsmål. Klik på et nummer for at gå til
+              et spørgsmål, og husk at klikke på “Indsend svar” for at
+              registrere dine resultater.
             </span>
           </div>
         </div>
 
         <Link href="/questions">
           <Button
-            value="Start Eksamen"
+            value="Start"
             className="mt-10 rounded-lg bg-blue-600 px-6 py-3 text-white hover:bg-blue-700"
           />
         </Link>
