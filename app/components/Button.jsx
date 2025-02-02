@@ -1,16 +1,42 @@
-import React from 'react';
+'use client';
 
-const Button = ({styles, value, onClick}) => {
-    
-    const onClickHandler = () => {
-        onClick();
-    }
+import PropTypes from 'prop-types';
+import clsx from 'clsx';
 
-    return (
-        <button onClick={onClickHandler} type="button" className={`py-2 px-6 w-fit text-[18px] font-bold bg-blue-500 text-white rounded-[10px] outline-none hover:bg-blue-700 duration-500 ${styles}`}>
-            {value}
-        </button>
-    );
-}
+const Button = ({
+  styles,
+  value,
+  onClick,
+  type = 'button',
+  variant = 'default',
+}) => {
+  const variantClasses = {
+    default: 'bg-blue-500 hover:bg-blue-700',
+    primary: 'bg-blue-50 hover:bg-blue-100',
+    delete: 'bg-red-500 hover:bg-red-700',
+  };
+
+  return (
+    <button
+      onClick={onClick}
+      type={type}
+      className={clsx(
+        'w-fit rounded-[10px] px-6 py-2 text-[18px] font-bold text-white outline-none duration-500',
+        variantClasses[variant],
+        styles,
+      )}
+    >
+      {value}
+    </button>
+  );
+};
+
+Button.propTypes = {
+  styles: PropTypes.string,
+  variant: PropTypes.oneOf(['default', 'primary', 'secondary']),
+  value: PropTypes.node.isRequired,
+  onClick: PropTypes.func.isRequired,
+  type: PropTypes.string,
+};
 
 export default Button;
