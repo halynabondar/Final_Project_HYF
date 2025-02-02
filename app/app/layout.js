@@ -5,7 +5,7 @@ import Footer from '@/components/Footer';
 import { SessionProvider } from 'next-auth/react';
 
 export const metadata = {
-  title: 'HackYourFuture',
+  title: 'DKTestPrep',
 };
 
 export default function RootLayout({ children }) {
@@ -14,7 +14,7 @@ export default function RootLayout({ children }) {
       <body className="flex min-h-screen flex-col">
         <SessionProvider>
           <Navbar />
-          <main className="flex-grow">{children}</main>
+          <main className="grow">{children}</main>
           <Footer />
         </SessionProvider>
       </body>
