@@ -1,7 +1,6 @@
 import { NextResponse } from 'next/server';
 import { saltAndHashPassword } from '@/utils/password';
 import { db } from '@/utils/db';
-import { auth } from '@/auth';
 
 export async function POST(req) {
   try {
