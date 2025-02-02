@@ -23,6 +23,7 @@ export default function Address({ profileData, handleChange, handleSubmit }) {
         <h3 className="text-lg font-bold text-gray-700">Address</h3>
         <Button
           value={formMode === 'edit' ? 'Gem' : 'Redigere'}
+          variant="default"
           onClick={formSubmitHandler}
         />
       </div>

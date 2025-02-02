@@ -51,7 +51,7 @@ export default function EditProfileImage({
 
     const formData = { image: selectedFile };
     try {
-      const response = await fetch(`/api/user/${user.id}`, {
+      const response = await fetch(`/api/private/user/${user.id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -115,12 +115,13 @@ export default function EditProfileImage({
                 />
                 <Button
                   value="Vælg billede"
+                  variant="default"
                   onClick={() => fileInputRef.current.click()}
                 />
               </label>
               <Button
+                variant="delete"
                 value="Fjerne"
-                styles={`bg-red-500 hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-400`}
                 onClick={() => {
                   setSelectedFile(null);
                   setPreview('/userImage.jpg');

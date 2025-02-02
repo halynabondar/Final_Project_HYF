@@ -12,17 +12,26 @@ import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
-import { AccountCircle } from '@mui/icons-material';
 import Link from 'next/link';
+import { useSession } from 'next-auth/react';
+import { useEffect } from 'react';
+import { Avatar } from '@mui/material';
 
 const pages = ['Start', 'Om Os', 'Test'];
-const settings = [
+const userSettings = [
   {
     title: 'Min Profil',
     path: '/profile',
   },
   {
-    title: 'Log ind',
+    title: 'Logge ud',
+    path: '/signout',
+  },
+];
+
+const visitorSettings = [
+  {
+    title: 'Logge ind',
     path: '/signin',
   },
 ];
@@ -30,6 +39,26 @@ const settings = [
 function ResponsiveAppBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+  const [userIcon, setUserIcon] = React.useState('/userImage.jpg');
+  const [settings, setSettings] = React.useState(visitorSettings);
+  const { data: session, status } = useSession();
+
+  const fetchUserIcon = async () => {
+    const response = await fetch(`/api/private/user/${session.user.email}`);
+    if (response.ok) {
+      const data = await response.json();
+      setUserIcon(data.image);
+    }
+  };
+
+  useEffect(() => {
+    if (status === 'loading') return;
+
+    if (session?.user) {
+      setSettings(userSettings);
+      fetchUserIcon();
+    }
+  }, [session?.user, status]);
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -166,7 +195,9 @@ function ResponsiveAppBar() {
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <AccountCircle
+                <Avatar
+                  src={userIcon}
+                  alt="Profile"
                   sx={{
                     background: 'white',
                     borderRadius: '50%',

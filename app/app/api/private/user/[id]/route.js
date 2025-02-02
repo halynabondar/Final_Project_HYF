@@ -1,11 +1,17 @@
 import { NextResponse } from 'next/server';
 import knex from '@/app/api/knex';
+import { auth } from '@/auth';
 
 // GET endpoint: Fetch user by ID
 export async function GET(req, { params }) {
   const { id } = await params;
 
   try {
+    const session = await auth();
+
+    if (!session) {
+      return NextResponse.json({ error: 'User not found' }, { status: 404 });
+    }
     // Fetch the user with the given id
     const user = await knex('users').where({ email: id }).first();
 
@@ -44,21 +50,32 @@ export async function PUT(req, { params }) {
   }
 }
 
-// POST endpoint: Update image
-export async function POST(req, { params }) {
+export async function DELETE(req, { params }) {
   const { id } = await params;
 
   try {
-    const formData = await req.formData();
-    const file = formData.get('image');
+    // Fetch the user with the given id
+    const user = await knex('users').where({ email: id }).first();
 
-    console.log(`Received file for user ID: ${id}`, file);
+    if (!user) {
+      return NextResponse.json({ error: 'User not found' }, { status: 404 });
+    }
 
-    return NextResponse.json({ message: 'File uploaded successfully' });
+    // delete related content
+    // auth records
+    await knex('accounts').where({ userId: user.id }).del();
+    await knex('sessions').where({ userId: user.id }).del(); // should also destroy session
+    // test related data
+    await knex('result_history').where({ user_id: user.id }).del();
+    await knex('test_sessions').where({ user_id: user.id }).del();
+    // delete user itself
+    await knex('users').where({ id: user.id }).del();
+
+    return NextResponse.json({ message: 'User deleted successfully' });
   } catch (error) {
-    console.error('Error uploading file:', error.message);
+    console.error('Error fetching user:', error.message);
     return NextResponse.json(
-      { error: 'Error uploading file' },
+      { error: 'Internal Server Error' },
       { status: 500 },
     );
   }
