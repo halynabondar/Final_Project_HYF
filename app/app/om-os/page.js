@@ -1,6 +1,6 @@
 const AboutPage = () => {
   return (
-    <section className="mx-auto max-w-4xl space-y-12 px-6 py-12">
+    <section className="mx-auto max-w-4xl space-y-12 px-6 py-5">
       <h1 className="mb-8 text-center text-4xl font-bold text-blue-600">
         Om Os
       </h1>
