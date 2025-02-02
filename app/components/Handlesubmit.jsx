@@ -10,8 +10,6 @@ export default async function handleSubmit(
       userAnswersById[question.id] = userAnswers[index];
     });
 
-    const user_id = sessionStorage.getItem('user_id');
-
     console.log('Submitting data:', { user_id, userAnswersById });
 
     const response = await fetch('/api/questions', {

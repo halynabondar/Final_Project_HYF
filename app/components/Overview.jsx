@@ -1,18 +1,11 @@
 'use client';
 
 import PropTypes from 'prop-types';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import handleSubmit from '@/components/Handlesubmit';
 
 const Overview = ({ questions, userAnswers, onQuestionClick, timeExpired }) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isClient, setIsClient] = useState(false);
-
-  useEffect(() => {
-    setIsClient(true);
-  }, []);
-
-  if (!isClient) return null;
 
   return (
     <section className="flex flex-col items-center justify-center gap-8">

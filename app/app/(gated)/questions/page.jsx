@@ -6,7 +6,7 @@ import PreviousNext from '@/components/Prevnext';
 import Button from '@/components/Button';
 import CountdownTimer from '@/components/Countdowntimer';
 import AutorenewIcon from '@mui/icons-material/Autorenew';
-import Overview from '../overview/page';
+import Overview from '../../../components/Overview';
 import handleSubmit from '@/components/Handlesubmit';
 
 const apiUrl = '/api/questions';

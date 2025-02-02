@@ -1,8 +1,15 @@
 import { NextResponse } from 'next/server';
 import knex from '@/app/api/knex';
+import { auth } from '@/auth';
+
 
 export async function GET() {
   try {
+    const session = await auth()
+    if (!session) {
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    }
+
     const questions = await knex('questions')
       .select('id', 'question', 'answers')
       .orderByRaw('RANDOM()')
@@ -20,9 +27,14 @@ export async function GET() {
 
 export async function POST(req) {
   try {
-    const { user_id, userAnswers } = await req.json();
+    const session = await getServerSession({ req, ...authOptions });
 
-    const finalUserId = user_id;
+    if (!session) {
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    }
+
+    const { userAnswers } = await req.json();
+    const finalUserId = session.user.id;
 
     const questionIds = Object.keys(userAnswers).map(Number);
 
@@ -50,7 +62,7 @@ export async function POST(req) {
 
     return NextResponse.json({ results, score });
   } catch (error) {
-    console.error('Error validating answers:', error.message);
+    console.error('Error processing request:', error.message);
     return NextResponse.json(
       { error: 'Internal Server Error' },
       { status: 500 },
