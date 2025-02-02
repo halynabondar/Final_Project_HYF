@@ -12,7 +12,7 @@ const Button = ({
 }) => {
   const variantClasses = {
     default: 'bg-blue-500 hover:bg-blue-700',
-    primary: 'bg-blue-50 hover:bg-blue-100',
+    primary: 'bg-blue-400 hover:bg-blue-500',
     delete: 'bg-red-500 hover:bg-red-700',
   };
 

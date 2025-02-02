@@ -25,8 +25,7 @@ const ExamInstructions = () => {
         </div>
 
         <h1 className="mb-6 text-center text-3xl font-bold text-blue-600">
-          Velkommen til Testen.
-
+          Velkommen til Testen
         </h1>
 
         <div className="mb-6 grid grid-cols-1 gap-6 text-lg text-gray-700 md:grid-cols-2">
@@ -37,15 +36,15 @@ const ExamInstructions = () => {
             />
             <span>
               <h2 className="font-bold">Undgå at opdatere eller genindlæse:</h2>{' '}
-              Hvis du opdaterer eller genindlæser eksamenssiden, vil du miste
-              alt dit fremskridt. Undgå at gøre dette under eksamen.
+              Hvis du opdaterer eller genindlæser testsiden, vil du miste alt
+              dit fremskridt. Undgå at gøre dette under testen.
             </span>
           </div>
           <div className="flex items-start gap-4">
             <FontAwesomeIcon icon={faClock} className="size-6 text-green-500" />
             <span>
-              <h2 className="font-bold">Timeren starter:</h2> Eksamens timeren
-              begynder, så snart du klikker på knappen “Start Eksamen”.
+              <h2 className="font-bold">Timeren starter:</h2> Testens timer
+              begynder, så snart du klikker på knappen “Start”.
             </span>
           </div>
           <div className="flex items-start gap-4">
@@ -66,20 +65,17 @@ const ExamInstructions = () => {
               className="size-6 text-red-500"
             />
             <span>
-              <h2 className="font-bold">Eksamensoversigt:</h2> Brug
-              eksamensoversigten til at følge dit fremskridt og holde styr på
-              besvarede og ubesvarede spørgsmål. Klik på et nummer for at gå til
-              et spørgsmål, og husk at klikke på “Indsend svar” for at
-              registrere dine resultater.
+              <h2 className="font-bold">Testoversigt:</h2> Brug testoversigten
+              til at følge dit fremskridt og holde styr på besvarede og
+              ubesvarede spørgsmål. Klik på et nummer for at gå til et
+              spørgsmål, og husk at klikke på “Indsend svar” for at registrere
+              dit resultat.
             </span>
           </div>
         </div>
 
         <Link href="/questions">
-          <Button
-            value="Start"
-            className="mt-10 rounded-lg bg-blue-600 px-6 py-3 text-white hover:bg-blue-700"
-          />
+          <Button variant="default" styles={`px-8`} value="Start" />
         </Link>
       </div>
     </section>

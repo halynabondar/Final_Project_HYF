@@ -41,7 +41,7 @@ function CountdownTimer({ duration, startTime, onTimeUp }) {
 
   return (
     <div className="flex justify-center py-2">
-      <div className="w-full max-w-xl rounded-xl  border-2 bg-indigo-500 p-0 px-10 py-2 text-center text-lg font-bold text-white shadow-xl sm:w-full sm:px-4 sm:py-2">
+      <div className="w-full max-w-xl rounded-xl border-2 bg-blue-400 p-0 px-10 py-2 text-center text-lg font-bold text-white shadow-xl duration-500 hover:bg-blue-500 sm:w-full sm:px-4 sm:py-2">
         <span className="hidden sm:inline">Tid Tilbage: </span>
         {formatTime(timeLeft)}
       </div>

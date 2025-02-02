@@ -161,7 +161,7 @@ function Exam() {
           />
           <div className="ml-4">
             <Button
-              styles="bg-indigo-500 hover:bg-blue-700"
+              variant="primary"
               value="Oversigt"
               onClick={handleOverviewButtonClick}
             />
