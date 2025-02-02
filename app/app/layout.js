@@ -5,7 +5,7 @@ import Footer from '@/components/Footer';
 import { SessionProvider } from 'next-auth/react';
 
 export const metadata = {
-  title: 'HackYourFuture',
+  title: 'DKTestPrep',
 };
 
 export default function RootLayout({ children }) {
