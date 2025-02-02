@@ -1,8 +1,15 @@
 import { NextResponse } from 'next/server';
 import knex from '@/app/api/knex';
+import { auth } from '@/auth';
 
 export async function GET(req) {
   try {
+    const session = await auth();
+
+    if (!session) {
+      return NextResponse.json({ error: 'User not found' }, { status: 404 });
+    }
+
     const { searchParams } = new URL(req.url);
     const userId = searchParams.get('userId');
 

@@ -71,7 +71,7 @@ export default function StickyHeadTable() {
           korrekt: item.score,
           ukorrekt: item.wrong_answers,
           resultater:
-            item.score > 35 ? (
+            item.score > 38 ? (
               <DoneIcon className="text-green-600" />
             ) : (
               <CloseIcon className="text-red-600" />

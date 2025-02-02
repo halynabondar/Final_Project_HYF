@@ -1,11 +1,17 @@
 import { NextResponse } from 'next/server';
 import knex from '@/app/api/knex';
+import { auth } from '@/auth';
 
 // GET endpoint: Fetch user by ID
 export async function GET(req, { params }) {
   const { id } = await params;
 
   try {
+    const session = await auth();
+
+    if (!session) {
+      return NextResponse.json({ error: 'User not found' }, { status: 404 });
+    }
     // Fetch the user with the given id
     const user = await knex('users').where({ email: id }).first();
 
