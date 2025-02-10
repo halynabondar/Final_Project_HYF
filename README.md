@@ -1,5 +1,3 @@
-<img src="./images/hyf.svg" alt="image" width="200px" height="200px">
-
 # HackYourFuture project template
 
 This template is meant to be used as part of the meal-sharing and Final Project modules,
